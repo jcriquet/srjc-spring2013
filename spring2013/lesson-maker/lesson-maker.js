@@ -46,7 +46,8 @@ $(document).ready(function() {
 	  });
 	  navigator.id.watch({
 				loggedInUser: null,
-				onlogin: function (assertion) {},
+				onlogin: function (assertion) {
+					},
 				// This won't ever fire in the example.
 				onlogout: function () {
 					 $.ajax({
@@ -57,6 +58,7 @@ $(document).ready(function() {
 	  });
 					}
 			});
+			$('#studentid').text(user);
 	showSyllabus(syllabus_id);
 	});
 	// major function to build a full class with all lessons

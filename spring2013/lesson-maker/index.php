@@ -15,6 +15,7 @@ require('../authenticate_instructor.php');
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="../css/spring2013.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
+var user = '<?php print $_SESSION['user']['email'] ?>';
 var syllabus_id = 1;
 </script>
 <script src="lesson-maker.js"></script>
@@ -24,13 +25,29 @@ var syllabus_id = 1;
 <header class="jumbotron subhead" id="overview">
   <div class="container">
   <div class="row">
-   <div class="span6"><h2 id="course-info"></h2></div><div class="span5" id="syllabus-menu"></div> <button class="btn span1" type="button" id="logout">Logout</button>
+   <div class="span6"><h2 id="course-info"></h2></div><div class="span5" id="syllabus-menu"></div><button class="btn span1 btn-info" type="button" id="profile" data-toggle="modal" data-target="#myprofile">Profile</button> <button class="btn span1 btn-success" type="button" id="logout">Logout</button> 
    </div>
   </div>
 </header>
 
  <div class="container">
  
+ <div id="myprofile" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Update your profile</h3>
+  </div>
+  <div class="modal-body">
+   <p id="studentid" class="span3" ></p>
+  <p id="githubaccount" class="span5" contenteditable=true>Enter Your GitHub Account</p>
+  <p id="galleryurl" class="span5" contenteditable=true>Enter the URL of your Student Gallery</p>
+    
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
  
   <div class="row">
     
