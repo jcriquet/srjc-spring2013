@@ -11,10 +11,14 @@ $(document).ready(function() {
 		lesson += "<h2>Reading</h2>";
 		if (syllabus.lessons[lessonID].reads) {
 		$.each(syllabus.lessons[lessonID].reads, function(index, value) {
-			if (syllabus.lessons[lessonID].reads[index].title) {
+			if (syllabus.lessons[lessonID].reads[index].title && syllabus.lessons[lessonID].reads[index].reading_url) {
 			 lesson += '<p><a href="'+syllabus.lessons[lessonID].reads[index].reading_url+'">'+syllabus.lessons[lessonID].reads[index].title+'&nbsp;'+syllabus.lessons[lessonID].reads[index].description+'</a></p>';
-			} else {
+			} else if (!syllabus.lessons[lessonID].reads[index].title && syllabus.lessons[lessonID].reads[index].reading_url)  {
 				lesson += '<p><a href="'+syllabus.lessons[lessonID].reads[index].reading_url+'">'+syllabus.lessons[lessonID].reads[index].description+'</a></p>';
+			} else if (syllabus.lessons[lessonID].reads[index].title && !syllabus.lessons[lessonID].reads[index].reading_url) {
+				lesson += '<p>'+syllabus.lessons[lessonID].reads[index].title+'&nbsp;'+syllabus.lessons[lessonID].reads[index].description+'</p>';
+			} else {
+				lesson += '<p>'+syllabus.lessons[lessonID].reads[index].description+'</p>';
 			}
 	      });
 		}
