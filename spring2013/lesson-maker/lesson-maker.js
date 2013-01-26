@@ -58,10 +58,29 @@ $(document).ready(function() {
 	  });
 					}
 			});
-			$('#studentid').text(user);
+	$('#studentid').text(user);
+	getProfile(user);
 	showSyllabus(syllabus_id);
 	});
-	// major function to build a full class with all lessons
+	// get the user's profile
+	var getProfile = function(user) {
+		$.ajax({
+       type: "GET",
+       url: "get-profile.php",
+       data: { email: user },
+       datatype: "json"
+      }).done(function( data) {
+		   data = $.parseJSON(data);
+		  $('#fullname').text(data.first_name + " " + data.last_name);
+		  if (data.gallery_URL) {
+			  $('#galleryurl').text(data.gallery_URL);
+		  }
+		  if (data.github_userid) {
+			   $('#githubaccount').text(data.github_userid);
+		  }		  
+	  });
+	}
+	//  function to build a full class with all lessons
 var showSyllabus = function(syllabus_id) {
 	var currentLesson = 1;
 	var syllabus;	 
@@ -315,6 +334,7 @@ var showSyllabus = function(syllabus_id) {
 			 });
 		  });	 
 	}  
+	// remove potential residual tags in href input fields
 	function strip(html) {
        var tmp = document.createElement("DIV");
        tmp.innerHTML = html;
