@@ -42,13 +42,15 @@ var syllabus_id = 1;
     <p id="studentid"></p>
   </div>
   <div class="modal-body"> 
-  <p id="githubaccount" class="span5" contenteditable=true>Enter Your GitHub Account</p>
-  <p id="galleryurl" class="span5" contenteditable=true>Enter the URL of your Student Gallery</p>
+  <p class="span5">Your github.com userid </p>
+  <p id="githubaccount" class="span5" contenteditable=true></p>
+   <p class="span5"> Your student gallery URL </p>
+  <p id="galleryurl" class="span5" contenteditable=true></p>
     
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
+    <a href="#" class="btn btn-primary" id="#update-profile">Save changes</a>
   </div>
 </div>
  

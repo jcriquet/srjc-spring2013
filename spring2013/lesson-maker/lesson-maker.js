@@ -61,9 +61,22 @@ $(document).ready(function() {
 	$('#studentid').text(user);
 	getProfile(user);
 	showSyllabus(syllabus_id);
+	// event to update profile
+	$("#update-profile").click(function() {
+		if ($('#galleryurl').text() || $('#githubaccount').text()) {
+	   $.ajax({
+              type: "GET",
+              url: "put-profile.php",
+              data: { student_id: user, gallery_URL:$('#galleryurl').text(data.gallery_URL) , github_userid:$('#githubaccount').text(data.github_userid) },
+              datatype: "json"
+               }).done(function( data) {
+	     alert("Your Profile Updated");
+		});
+		}
 	});
-	// get the user's profile
-	var getProfile = function(user) {
+	});
+// get the user's profile
+var getProfile = function(user) {
 		$.ajax({
        type: "GET",
        url: "get-profile.php",
@@ -80,7 +93,7 @@ $(document).ready(function() {
 		  }		  
 	  });
 	}
-	//  function to build a full class with all lessons
+//  function to build a full class with all lessons
 var showSyllabus = function(syllabus_id) {
 	var currentLesson = 1;
 	var syllabus;	 
