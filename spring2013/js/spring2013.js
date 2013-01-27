@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var currentLesson = 1;
+	var currentLesson = 2;
 	var syllabus;
     function showLesson(lessonID) {
 	    $("#lesson-topic").html(syllabus.lessons[lessonID].topics);
