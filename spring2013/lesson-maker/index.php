@@ -50,7 +50,7 @@ var syllabus_id = 1;
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" id="#update-profile">Save changes</a>
+    <a class="btn btn-primary" id="update-profile">Save changes</a>
   </div>
 </div>
  

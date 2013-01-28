@@ -64,13 +64,16 @@ $(document).ready(function() {
 	// event to update profile
 	$("#update-profile").click(function() {
 		if ($('#galleryurl').text() || $('#githubaccount').text()) {
+			var profile = {email:user,gallery_URL:$('#galleryurl').text() , github_userid:$('#githubaccount').text()}
 	   $.ajax({
               type: "GET",
               url: "put-profile.php",
-              data: { student_id: user, gallery_URL:$('#galleryurl').text(data.gallery_URL) , github_userid:$('#githubaccount').text(data.github_userid) },
+              data: { profile: profile },
               datatype: "json"
                }).done(function( data) {
-	     alert("Your Profile Updated");
+	     alert("Your Profile Was Updated");
+		 getProfile(user);
+		 $("#myprofile").modal('hide')
 		});
 		}
 	});
