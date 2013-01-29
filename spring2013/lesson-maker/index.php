@@ -38,7 +38,7 @@ var syllabus_id = 1;
  <div id="myprofile" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h1 id="fullname"></h1>
+    <h1 id="fullname" class="span3"></h1><img id="mygravatar"  class="img-polaroid" />
     <p id="studentid"></p>
   </div>
   <div class="modal-body"> 

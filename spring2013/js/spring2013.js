@@ -48,8 +48,8 @@ $(document).ready(function() {
        datatype: "json"
       }).done(function( data) {
          data = $.parseJSON(data);
-         console.log(data);
          syllabus = data[syllabus_id];
+		 console.log(syllabus);
 		 $("#course-info").html(syllabus.course_name+"&nbsp;&mdash;&nbsp;"+syllabus.semester+"&nbsp;|&nbsp;"+syllabus.srjc_id+"&nbsp;|&nbsp; Section "+syllabus.section_number);
 		 $.each(syllabus.lessons, function(index, value) {
 			 $("#lesson-list").append("<tr class=lesson-listing data-id="+value.lesson_id+"><td>"+value.lesson_date.substr(0,value.lesson_date.indexOf(","))+"</td><td>"+value.topics+"</td></tr>");
@@ -61,8 +61,26 @@ $(document).ready(function() {
 		 });
 		 if (syllabus.students) {
 		 $.each(syllabus.students, function(index, value) {
-			 $("#student-list").append("<p class=student-listing>"+value.first_name+"</p>");
+			 $("#student-list").append("<p data-id="+value.email+" class=student-listing>"+value.first_name+"</p>");
 	      });
+		 $(".student-listing").click(function() {
+			  //sylla
+			  $("#studentname").text(syllabus.students[$(this).attr("data-id")].first_name);
+			  $("#studentavatar").attr("src","http://www.gravatar.com/avatar/"+syllabus.students[$(this).attr('data-id')].gravatar_hash);
+			  if (syllabus.students[$(this).attr("data-id")].github_userid) {
+			    var githublink = "<a href=http://www.github.com/"+syllabus.students[$(this).attr("data-id")].github_userid+"/"+syllabus.repository+">"+syllabus.students[$(this).attr("data-id")].github_userid+"</a>";
+			   $("#studentgithub").html(githublink);
+			  } else {
+				$("#studentgithub").html("");  
+			  }
+			  if (syllabus.students[$(this).attr("data-id")].gallery_URL) {
+			    var gallerylink = "<a href="+syllabus.students[$(this).attr("data-id")].gallery_URL+">"+syllabus.students[$(this).attr("data-id")].gallery_URL+"</a>";
+			   $("#studentgalleryurl").html(gallerylink);
+			  } else {
+				$("#studentgalleryurl").html("");  
+			  }
+			  $("#viewprofile").modal('show');
+		 });
 		 };
 		 showLesson($("table#lesson-list tbody tr").eq(currentLesson).attr("data-id"));
 		 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");

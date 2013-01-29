@@ -28,7 +28,7 @@ switch($data->getMethod())
 	/* check for the syllabus_id POST request variable */
 	if ($syllabus_request) {
 		/* Select the requested syllabus */
-if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, course_name, srjc_id FROM course, syllabus where syllabus.course_course_id = course.course_id and syllabus_id=".$syllabus_request)) 
+if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, course_name, srjc_id, repository FROM course, syllabus where syllabus.course_course_id = course.course_id and syllabus_id=".$syllabus_request)) 
  { 
   while ($syllabus = $syllabi->fetch_object())
   {
@@ -37,6 +37,7 @@ if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, cou
    if ($students = $mysqli->query("SELECT email, first_name, last_name, gallery_URL, github_userid FROM student , class where email = student_email and syllabus_syllabus_id =".$syllabus->syllabus_id)) {
    while ($student = $students->fetch_object())
     {
+	  $student->gravatar_hash = md5( strtolower( trim($student->email ) ) );
 	  $syllabus_array[$syllabus->syllabus_id]->students[$student->email] = $student;
 	}
    }

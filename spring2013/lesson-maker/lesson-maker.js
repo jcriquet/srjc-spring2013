@@ -73,7 +73,7 @@ $(document).ready(function() {
                }).done(function( data) {
 	     alert("Your Profile Was Updated");
 		 getProfile(user);
-		 $("#myprofile").modal('hide')
+		 $("#myprofile").modal('hide');
 		});
 		}
 	});
@@ -87,7 +87,9 @@ var getProfile = function(user) {
        datatype: "json"
       }).done(function( data) {
 		   data = $.parseJSON(data);
+		   console.log(data);
 		  $('#fullname').text(data.first_name + " " + data.last_name);
+		   $("#mygravatar").attr("src","http://www.gravatar.com/avatar/"+data.gravatar_hash);
 		  if (data.gallery_URL) {
 			  $('#galleryurl').text(data.gallery_URL);
 		  }
