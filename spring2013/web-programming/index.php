@@ -18,6 +18,9 @@ var syllabus_id = 2;
 <body>
 <header class="jumbotron subhead" id="overview">
   <div class="container">
+  <div class="row">
+   <button class="btn span2 btn-info" type="button" id="profile" data-toggle="modal" data-target="#myprofile">Profile</button> <button class="btn span2 btn-success" type="button" id="logout">Logout</button> 
+   </div>
    <h2 id="course-info"></h2>
   </div>
 </header>
@@ -75,7 +78,7 @@ var syllabus_id = 2;
     <th scope="col">Topic</th>
   </tr>
     </table>   
-     <h3>Students</h3>
+     <h3>Participants</h3>
      <div id="student-list"></div>
     </div>
     </div>  

@@ -61,7 +61,11 @@ $(document).ready(function() {
 		 });
 		 if (syllabus.students) {
 		 $.each(syllabus.students, function(index, value) {
-			 $("#student-list").append("<p data-id="+value.email+" class=student-listing>"+value.first_name+"</p>");
+			 if (value.type == "instructor") {
+			 $("#student-list").append('<p data-id='+value.email+' class="student-listing"><strong>'+value.first_name+'</strong></p>');
+			 } else {
+			 $("#student-list").append('<p data-id='+value.email+' class="student-listing">'+value.first_name+'</p>');
+			 }
 	      });
 		 $(".student-listing").click(function() {
 			  //sylla

@@ -34,7 +34,7 @@ if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, cou
   {
    $syllabus_array[$syllabus->syllabus_id] = $syllabus;
     /* Select the students in the class */
-   if ($students = $mysqli->query("SELECT email, first_name, last_name, gallery_URL, github_userid FROM student , class where email = student_email and syllabus_syllabus_id =".$syllabus->syllabus_id)) {
+   if ($students = $mysqli->query("SELECT email, first_name, last_name, gallery_URL, github_userid , type FROM student , class where email = student_email and syllabus_syllabus_id =".$syllabus->syllabus_id)) {
    while ($student = $students->fetch_object())
     {
 	  $student->gravatar_hash = md5( strtolower( trim($student->email ) ) );
