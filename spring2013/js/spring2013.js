@@ -136,7 +136,7 @@ $(document).ready(function() {
 			var profile = {email:user,gallery_URL:$('#galleryurl').text() , github_userid:$('#githubaccount').text()}
 	   $.ajax({
               type: "GET",
-              url: "put-profile.php",
+              url: "../lesson-maker/put-profile.php",
               data: { profile: profile },
               datatype: "json"
                }).done(function( data) {
