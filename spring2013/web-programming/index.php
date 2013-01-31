@@ -294,6 +294,10 @@ possible to better ensure such accommodations are implemented in a timely fashio
         
         </div>
         </div>
+        <footer class="row well well-large">
+        <h4>This page requires Javascript and is best viewed in the latest version of Google Chrome</h4>
+       <a href="https://www.google.com/intl/en/chrome/browser/"> <img src="https://www.google.com/intl/en/chrome/assets/common/images/chrome_logo_2x.png" /></a>
+        </footer>
 </div>
 </body>
 </html>
