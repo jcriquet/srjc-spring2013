@@ -1,3 +1,6 @@
+<?php 
+require('../authenticate.php');
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -6,10 +9,12 @@
 <title>Jay Peretz | SRJC Spring 2013 | HTML5 Web Programming</title>
 <link href='http://fonts.googleapis.com/css?family=Arapey:400italic,400' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="https://login.persona.org/include.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="../css/spring2013.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
+var user = '<?php print $_SESSION['user']['email'] ?>';
 var syllabus_id = 2;
 </script>
 <script src="../js/spring2013.js"></script>

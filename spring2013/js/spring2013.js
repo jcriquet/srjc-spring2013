@@ -1,6 +1,25 @@
 $(document).ready(function() {
 	var currentLesson = 2;
 	var syllabus;
+	var getProfile = function(user) {
+		$.ajax({
+       type: "GET",
+       url: "../lesson-maker/get-profile.php",
+       data: { email: user },
+       datatype: "json"
+      }).done(function( data) {
+		   data = $.parseJSON(data);
+		   console.log(data);
+		  $('#fullname').text(data.first_name + " " + data.last_name);
+		   $("#mygravatar").attr("src","http://www.gravatar.com/avatar/"+data.gravatar_hash);
+		  if (data.gallery_URL) {
+			  $('#galleryurl').text(data.gallery_URL);
+		  }
+		  if (data.github_userid) {
+			   $('#githubaccount').text(data.github_userid);
+		  }		  
+	  });
+	}
     function showLesson(lessonID) {
 	    $("#lesson-topic").html(syllabus.lessons[lessonID].topics);
 		 $("#lesson-desc").html(syllabus.lessons[lessonID].description);
@@ -54,7 +73,7 @@ $(document).ready(function() {
 		 $.each(syllabus.lessons, function(index, value) {
 			 $("#lesson-list").append("<tr class=lesson-listing data-id="+value.lesson_id+"><td>"+value.lesson_date.substr(0,value.lesson_date.indexOf(","))+"</td><td>"+value.topics+"</td></tr>");
 		 });
-		 $(".lesson-listing").click(function() {
+	$(".lesson-listing").click(function() {
 			 showLesson($(this).attr("data-id"));	
 			 $(".lesson-listing").removeClass("info");
 			 $(this).addClass("info");	
@@ -92,5 +111,41 @@ $(document).ready(function() {
    $("#general-info-hdr").click(function() {
 	   $("#general-info").slideToggle('slow');
    });
-   
+   $("#logout").click(function() {
+		  navigator.id.logout();
+		 
+	  });
+   navigator.id.watch({
+				loggedInUser: null,
+				onlogin: function (assertion) {
+					},
+				// This won't ever fire in the example.
+				onlogout: function () {
+					 $.ajax({
+            type: "GET",
+            url: "../xanthippe/service/auth/index.php"
+         }).done(function( data) {
+			 document.location.reload();
+	  });
+					}
+	});
+	$('#studentid').text(user);
+	getProfile(user);
+	$("#update-profile").click(function() {
+		if ($('#galleryurl').text() || $('#githubaccount').text()) {
+			var profile = {email:user,gallery_URL:$('#galleryurl').text() , github_userid:$('#githubaccount').text()}
+	   $.ajax({
+              type: "GET",
+              url: "put-profile.php",
+              data: { profile: profile },
+              datatype: "json"
+               }).done(function( data) {
+	     alert("Your Profile Was Updated");
+		 getProfile(user);
+		 $("#myprofile").modal('hide');
+		});
+		}
+	});
+	
+
 });
