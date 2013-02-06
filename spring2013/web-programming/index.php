@@ -16,6 +16,7 @@ require('../authenticate.php');
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
 var syllabus_id = 2;
+var currentLesson = 4;
 </script>
 <script src="../js/spring2013.js"></script>
 </head>

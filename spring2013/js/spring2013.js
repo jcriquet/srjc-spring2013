@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	var currentLesson = 3;
 	var syllabus;
 	var getProfile = function(user) {
 		$.ajax({
