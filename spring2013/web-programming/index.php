@@ -120,7 +120,8 @@ var currentLesson = 4;
   
 <h3>Office Hours</h3>
 <p>Wednesdays 6:00PM-7:00PM<br>
-  Petaluma Campus Call Building Room PC643 or Computer Lab
+  Petaluma Campus Call Building   Computer Lab<br>
+  By Appointment Only
   <br>
 </p>
 <h3>Class Forum</h3>
