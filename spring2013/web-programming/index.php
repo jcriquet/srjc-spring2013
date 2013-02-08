@@ -24,9 +24,6 @@ var currentLesson = 4;
 <body>
 <header class="jumbotron subhead" id="overview">
   <div class="container">
-  <div class="row">
-   <button class="btn span2 btn-info" type="button" id="profile" data-toggle="modal" data-target="#myprofile">Profile</button> <button class="btn span2 btn-success" type="button" id="logout">Logout</button> 
-   </div>
    <h2 id="course-info"></h2>
   </div>
 </header>
@@ -69,6 +66,17 @@ var currentLesson = 4;
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>
+<nav class="row">
+<div class="span12">
+<ul class="nav nav-pills">
+  <li class="active"><a href="http://www.w3schools.com/php/default.asp">PHP/MySQL/AJAX Tutorial</a></li>
+    <li><a href="../html5/">CS 52.10</a></li>
+   <li><a href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a></li>
+  <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
+  <li><a href="#" id="logout">Logout</a></li>
+</ul>
+</div>
+</nav>
   <div class="row">
     
      <div class="span8"> 

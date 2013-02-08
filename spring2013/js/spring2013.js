@@ -68,7 +68,7 @@ $(document).ready(function() {
          data = $.parseJSON(data);
          syllabus = data[syllabus_id];
 		 console.log(syllabus);
-		 $("#course-info").html(syllabus.course_name+"&nbsp;&mdash;&nbsp;"+syllabus.semester+"&nbsp;|&nbsp;"+syllabus.srjc_id+"&nbsp;|&nbsp; Section "+syllabus.section_number);
+		 $("#course-info , title").html(syllabus.course_name+"&nbsp;&mdash;&nbsp;"+syllabus.semester+"&nbsp;|&nbsp;"+syllabus.srjc_id+"&nbsp;|&nbsp; Section "+syllabus.section_number);
 		 $.each(syllabus.lessons, function(index, value) {
 			 $("#lesson-list").append("<tr class=lesson-listing data-id="+value.lesson_id+"><td>"+value.lesson_date.substr(0,value.lesson_date.indexOf(","))+"</td><td>"+value.topics+"</td></tr>");
 		 });
@@ -107,6 +107,7 @@ $(document).ready(function() {
 		 showLesson($("table#lesson-list tbody tr").eq(currentLesson).attr("data-id"));
 		 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
       });
+	   $("#general-info").hide();
    $("#general-info-hdr").click(function() {
 	   $("#general-info").slideToggle('slow');
    });
