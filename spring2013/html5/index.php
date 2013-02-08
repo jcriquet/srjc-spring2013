@@ -25,7 +25,7 @@ var currentLesson = 3;
 <header class="jumbotron subhead" id="overview">
   <div class="container">
   
-   <h2 id="course-info"></h2>
+   <h2 class="page-header" id="course-info"></h2>
   </div>
 </header>
 

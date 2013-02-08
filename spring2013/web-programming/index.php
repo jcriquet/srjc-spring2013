@@ -24,7 +24,7 @@ var currentLesson = 4;
 <body>
 <header class="jumbotron subhead" id="overview">
   <div class="container">
-   <h2 id="course-info"></h2>
+   <h2 class="page-header" id="course-info"></h2>
   </div>
 </header>
 
@@ -70,6 +70,7 @@ var currentLesson = 4;
 <div class="span12">
 <ul class="nav nav-pills">
   <li class="active"><a href="http://www.w3schools.com/php/default.asp">PHP/MySQL/AJAX Tutorial</a></li>
+  <li><a href="https://sas.elluminate.com/site/external/recording/playback/link/table/meeting?suid=M.DE63425940BCC831A6EEBAF99817AC">Elluminate Archive</a></li>
     <li><a href="../html5/">CS 52.10</a></li>
    <li><a href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a></li>
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
