@@ -117,7 +117,7 @@ var showSyllabus = function(syllabus_id) {
 		 $("#lesson-list").append('<tr><td><p id="newlessondate" contenteditable></p></td><td><p id="newlessontopic" contenteditable></p></td><td><button id="newLesson" class="btn" type="button">Add</button></td></tr>');
 		 $("#newLesson").click(function() {
 			 $.ajax({
-                      type: "GET",
+                      type: "POST",
                       url: "update-lesson.php", 
 					  data: { topics:$("#newlessontopic").text(), lesson_date: $("#newlessondate").text() , syllabus_id:syllabus_id }
 					}).done(function(data) {
@@ -343,7 +343,7 @@ var showSyllabus = function(syllabus_id) {
 		     syllabus.lessons[$(this).parent().parent().attr("data-id")].description = $("#lesson-desc").text();
 			 syllabus.lessons[$(this).parent().parent().attr("data-id")].blogpost = $('#inputBlog').html();
 			$.ajax({
-                      type: "GET",
+                      type: "POST",
                       url: "update-lesson.php",
                       data: { lesson_id: syllabus.lessons[$(this).parent().parent().attr("data-id")]},
                       datatype: "json"
