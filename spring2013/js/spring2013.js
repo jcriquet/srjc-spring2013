@@ -47,9 +47,9 @@ $(document).ready(function() {
 		if (syllabus.lessons[lessonID].exercises) {
 		$.each(syllabus.lessons[lessonID].exercises, function(index, value) {
 			if (syllabus.lessons[lessonID].exercises[index].url) {
-			   lesson += '<p><a href="'+syllabus.lessons[lessonID].exercises[index].url+'">'+syllabus.lessons[lessonID].exercises[index].description+'</a></p>';
+			   lesson += '<p> <a class="btn btn-primary" data-exercise="'+syllabus.lessons[lessonID].exercises[index]+'" data-toggle="modal" data-target="#submit-homework">Submit</a>&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].url+'">'+syllabus.lessons[lessonID].exercises[index].description+'</a></p>';
 			} else {
-				lesson += '<p>'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
+				lesson += '<p> <a class="btn btn-primary" data-exercise="'+syllabus.lessons[lessonID].exercises[index]+'" data-toggle="modal" data-target="#submit-homework">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
 			}
 	      });
 		}
@@ -60,7 +60,11 @@ $(document).ready(function() {
 			 lesson += '<p><a href="'+syllabus.lessons[lessonID].explores[index].url+'">'+syllabus.lessons[lessonID].explores[index].description+'</a></p>';
 	      });
 		}
-		$("#lesson-info").html(lesson);
+		$("#lesson-info").html(lesson);		
+		//   submit homework
+		$("#submit-exercise").click(function() {
+			console.log($(this));
+		});
     }
     $.ajax({
        type: "GET",
