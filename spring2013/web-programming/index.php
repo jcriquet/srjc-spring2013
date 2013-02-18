@@ -40,7 +40,8 @@ var currentLesson = 5;
   <p id="githubaccount" class="span5" contenteditable=true></p>
    <p class="span5"> Your student gallery URL </p>
   <p id="galleryurl" class="span5" contenteditable=true></p>
-    
+     <p class="span5"> Your final project proposal </p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="myproject" name="myproject"></textarea></p>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
@@ -60,7 +61,8 @@ var currentLesson = 5;
   <p id="studentgithub" class="span5"></p>
    <p class="span5">Portfolio </p>
   <p id="studentgalleryurl" class="span5"></p>
-    
+     <p class="span5">Final Project </p>
+  <p id="projectdesc" class="span5"></p> 
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>

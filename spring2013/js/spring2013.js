@@ -4,7 +4,7 @@ $(document).ready(function() {
 		$.ajax({
        type: "GET",
        url: "../lesson-maker/get-profile.php",
-       data: { email: user },
+       data: { email: user, syllabus_id:syllabus_id },
        datatype: "json"
       }).done(function( data) {
 		   data = $.parseJSON(data);
@@ -16,6 +16,9 @@ $(document).ready(function() {
 		  }
 		  if (data.github_userid) {
 			   $('#githubaccount').text(data.github_userid);
+		  }	
+		  if (data.project_description) {
+			   $('#myproject').val(data.project_description);
 		  }		  
 	  });
 	}
@@ -101,6 +104,12 @@ $(document).ready(function() {
 			  } else {
 				$("#studentgalleryurl").html("");  
 			  }
+			  if (syllabus.students[$(this).attr("data-id")].project_description) {
+			
+			   $("#projectdesc").text(syllabus.students[$(this).attr("data-id")].project_description);
+			  } else {
+				$("#projectdesc").html("");  
+			  }
 			  $("#viewprofile").modal('show');
 		 });
 		 };
@@ -132,10 +141,10 @@ $(document).ready(function() {
 	$('#studentid').text(user);
 	getProfile(user);
 	$("#update-profile").click(function() {
-		if ($('#galleryurl').text() || $('#githubaccount').text()) {
-			var profile = {email:user,gallery_URL:$('#galleryurl').text() , github_userid:$('#githubaccount').text()}
+		if ($('#galleryurl').text() || $('#githubaccount').text() || $('#myproject').val()) {
+			var profile = {email:user,syllabus_id:syllabus_id,gallery_URL:$('#galleryurl').text() , github_userid:$('#githubaccount').text() , project_description: $('#myproject').val()}
 	   $.ajax({
-              type: "GET",
+              type: "POST",
               url: "../lesson-maker/put-profile.php",
               data: { profile: profile },
               datatype: "json"
