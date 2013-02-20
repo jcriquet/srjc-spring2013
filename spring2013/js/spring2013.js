@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	var syllabus;
+	$("#submit-homework").modal("hide");
 	var getProfile = function(user) {
 		$.ajax({
        type: "GET",
@@ -47,9 +48,9 @@ $(document).ready(function() {
 		if (syllabus.lessons[lessonID].exercises) {
 		$.each(syllabus.lessons[lessonID].exercises, function(index, value) {
 			if (syllabus.lessons[lessonID].exercises[index].url) {
-			   lesson += '<p> <a class="btn btn-primary" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'" data-toggle="modal" data-target="#submit-homework">Submit</a>&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].url+'">'+syllabus.lessons[lessonID].exercises[index].description+'</a></p>';
+			   lesson += '<p> <a class="btn btn-primary submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].url+'">'+syllabus.lessons[lessonID].exercises[index].description+'</a></p>';
 			} else {
-				lesson += '<p> <a class="btn btn-primary" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'" data-toggle="modal" data-target="#submit-homework">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
+				lesson += '<p> <a class="btn btn-primary submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
 			}
 	      });
 		}
@@ -60,11 +61,11 @@ $(document).ready(function() {
 			 lesson += '<p><a href="'+syllabus.lessons[lessonID].explores[index].url+'">'+syllabus.lessons[lessonID].explores[index].description+'</a></p>';
 	      });
 		}
-		$("#lesson-info").html(lesson);		
-		//   submit homework
-		$("#submit-exercise").click(function() {
-			console.log($("#submit-homework").data('modal'));
-		});
+		$("#lesson-info").html(lesson);	
+		$(".submit-hw").click(function() {
+			$("#submit-homework").modal("show");
+			$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
+		});	
     }
     $.ajax({
        type: "GET",
@@ -159,6 +160,19 @@ $(document).ready(function() {
 		});
 		}
 	});
-	
+	//   submit homework
+		
+		$("#submit-exercise").click(function() {
+			var homework = {student_email:user,exercise_id:$("#submit-exercise").attr("exercise-id"),exerciseLink:$("#exercise-link").text(),exerciseComment:$("#exercise-comment").val()};
+			$.ajax({
+				type:"POST",
+				url:"../lesson-maker/submit-homework.php",
+				data: homework,
+				datatype:"json"
+			}).done(function(data) {
+	           alert("Your exercise was submitted");
+			   $("#submit-exercise").modal('hide');
+		    });
+		});
 
 });
