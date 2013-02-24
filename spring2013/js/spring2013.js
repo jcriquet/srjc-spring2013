@@ -44,6 +44,13 @@ $(document).ready(function() {
 			}
 	      });
 		}
+		lesson += "<h2>Explore </h2>";
+		lesson += "<h4>Non-manditory readings and exercises.  Choose the ones that you find interesting.</h4>"; 
+		if (syllabus.lessons[lessonID].explores) {
+		$.each(syllabus.lessons[lessonID].explores, function(index, value) {
+			 lesson += '<p><a href="'+syllabus.lessons[lessonID].explores[index].url+'">'+syllabus.lessons[lessonID].explores[index].description+'</a></p>';
+	      });
+		}
 		lesson += "<h2>Exercises</h2>";
 		if (syllabus.lessons[lessonID].exercises) {
 		$.each(syllabus.lessons[lessonID].exercises, function(index, value) {
@@ -53,14 +60,7 @@ $(document).ready(function() {
 				lesson += '<p> <a class="btn btn-primary submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
 			}
 	      });
-		}
-		lesson += "<h2>Explore </h2>";
-		lesson += "<h4>Non-manditory readings and exercises.  Choose the ones that you find interesting.</h4>"; 
-		if (syllabus.lessons[lessonID].explores) {
-		$.each(syllabus.lessons[lessonID].explores, function(index, value) {
-			 lesson += '<p><a href="'+syllabus.lessons[lessonID].explores[index].url+'">'+syllabus.lessons[lessonID].explores[index].description+'</a></p>';
-	      });
-		}
+		}		
 		$("#lesson-info").html(lesson);	
 		$(".submit-hw").click(function() {
 			$("#submit-homework").modal("show");
@@ -81,7 +81,8 @@ $(document).ready(function() {
 			 $("#lesson-list").append("<tr class=lesson-listing data-id="+value.lesson_id+"><td>"+value.lesson_date.substr(0,value.lesson_date.indexOf(","))+"</td><td>"+value.topics+"</td></tr>");
 		 });
 	$(".lesson-listing").click(function() {
-			 showLesson($(this).attr("data-id"));	
+		     currentLesson = $(this).attr("data-id");
+			 showLesson(currentLesson);	
 			 $(".lesson-listing").removeClass("info");
 			 $(this).addClass("info");	
 		 });
