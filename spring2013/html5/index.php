@@ -96,6 +96,8 @@ var currentLesson = 4;
   <li class="active"><a href="http://diveintohtml5.info/">Dive into HTML5</a></li>
     <li><a href="../web-programming/">CS 53.11B</a></li>
    <li><a href="http://online.santarosa.edu/gradebook/?5041">Gradebook</a></li>
+ <!--  <li><a href="https://web-srjc.wikispaces.com/Web+Glossary">Glossary Wiki</a></li>
+   <li><a href="http://web-srjc.wikispaces.com/Web+Development+Links">Links Wiki</a></li>-->
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
   <li><a href="#" id="logout">Logout</a></li>
 </ul>
