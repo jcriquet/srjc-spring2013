@@ -63,6 +63,11 @@ if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, cou
    while ($exercise = $exercises->fetch_object())
     {
 		$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->exercises[$exercise->exercise_id] = $exercise;
+		if ($homeworks = $mysqli->query("SELECT homework_id,student_email,comment, URL FROM homework where exercise_exercise_id =".$exercise->exercise_id)) {
+			while ($homework = $homeworks->fetch_object()) {
+				$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->exercises[$exercise->exercise_id]->homeworks[$homework->homework_id] = $homework;
+			}
+		}
 	}
 	  }
 	 }
