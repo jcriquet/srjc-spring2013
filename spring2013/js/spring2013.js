@@ -59,7 +59,18 @@ $(document).ready(function() {
 			} else {
 				lesson += '<p> <a class="btn btn-primary submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
 			}
-	      });
+	      if (syllabus.lessons[lessonID].exercises[index].homeworks) {
+			  $.each(syllabus.lessons[lessonID].exercises[index].homeworks,function(index2,value2) {
+				  
+				  if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL) {
+			   lesson += '<p class="muted"><a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+			} else {
+				lesson += '<p class="muted">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+			}	
+						  
+			  });
+		  }
+		  });
 		}		
 		$("#lesson-info").html(lesson);	
 		$(".submit-hw").click(function() {
@@ -173,6 +184,8 @@ $(document).ready(function() {
 			}).done(function(data) {
 	           alert("Your exercise was submitted");
 			   $("#submit-exercise").modal('hide');
+//
+			   showLesson(currentLesson);
 		    });
 		});
 

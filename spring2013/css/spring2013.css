@@ -80,5 +80,8 @@ box-shadow:  0 0 3px 3px #BBB;
 body.mceContentBody {
    background: #000;
 }
+#lesson-info p.muted {
+	margin-left:35px;
+}
 
 
