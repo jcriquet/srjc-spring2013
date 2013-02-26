@@ -184,7 +184,8 @@ $(document).ready(function() {
 			}).done(function(data) {
 	           alert("Your exercise was submitted");
 			   $("#submit-exercise").modal('hide');
-//
+               var data = $.parseJSON(data);
+			   syllabus.lessons[currentLesson].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
 			   showLesson(currentLesson);
 		    });
 		});
