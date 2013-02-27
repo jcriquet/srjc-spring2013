@@ -16,7 +16,7 @@ require('../authenticate.php');
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
 var syllabus_id = 1;
-var currentLesson = 4;
+var currentLesson = 6;
 </script>
 <script src="../js/spring2013.js"></script>
 </head>
@@ -30,6 +30,24 @@ var currentLesson = 4;
 </header>
 
  <div class="container">
+ 
+ <div id="submit-review" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+    <h3>Peer Review of Exercise</h3>
+     
+  </div>
+  <div class="modal-body"> 
+   <p class="span5"> Comment </p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="exercise-comment" name="exercise-comment"></textarea></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a class="btn btn-primary" id="submit-rev">Submit</a>
+  </div>
+</div>
+ 
  <div id="myprofile" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
