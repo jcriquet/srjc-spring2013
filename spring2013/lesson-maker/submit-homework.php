@@ -9,6 +9,9 @@ if ($_POST['exercise_id']) {
   $selectname = $mysqli->query('select first_name from student where email ="'.$newhomework->student_email.'"');
   $newname = $selectname->fetch_object();
   $newhomework->first_name = $newname->first_name;
+  $selectlesson = $mysqli->query("select lesson_id from lesson , exercise where lesson_id = lesson_lesson_id and exercise_id = ".$_POST['exercise_id']);
+  $lessonid = $selectlesson->fetch_object();
+  $newhomework->lesson_id = $lessonid->lesson_id;
   $mysqli->close();
   require_once('JSON.php');
   $json = new Services_JSON;

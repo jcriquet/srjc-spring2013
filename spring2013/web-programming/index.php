@@ -38,7 +38,7 @@ var currentLesson = 6;
   </div>
   <div class="modal-body"> 
    <p class="span5"> Comment </p>
- <p  class="span5"> <textarea columns=600 rows=2 id="exercise-comment" name="exercise-comment"></textarea></p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="homework-comment" name="homework-comment"></textarea></p>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>

@@ -190,8 +190,8 @@ $(document).ready(function() {
 	           alert("Your exercise was submitted");
 			   $("#submit-exercise").modal('hide');
                var data = $.parseJSON(data);
-			   syllabus.lessons[currentLesson].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
-			   showLesson(currentLesson);
+			   syllabus.lessons[data.lesson_id].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
+			   showLesson(data.lesson_id);
 		    });
 		});
 		$("#submit-rev").click(function() {
