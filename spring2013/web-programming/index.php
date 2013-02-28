@@ -7,7 +7,7 @@ require('../authenticate.php');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jay Peretz | SRJC Spring 2013 | HTML5 Web Programming</title>
-<link href='http://fonts.googleapis.com/css?family=Arapey:400italic,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,700,700italic' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="https://login.persona.org/include.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
@@ -42,7 +42,7 @@ var currentLesson = 6;
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a class="btn btn-primary" id="submit-rev">Submit</a>
+    <a class="btn btn-warning" id="submit-rev">Submit</a>
   </div>
 </div>
  
@@ -62,7 +62,7 @@ var currentLesson = 6;
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a class="btn btn-primary" id="update-profile">Save changes</a>
+    <a class="btn btn-warning" id="update-profile">Save changes</a>
   </div>
 </div>
 
@@ -103,14 +103,14 @@ var currentLesson = 6;
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a class="btn btn-primary" id="submit-exercise">Submit</a>
+    <a class="btn btn-warning" id="submit-exercise">Submit</a>
   </div>
 </div>
 
 <nav class="row">
 <div class="span12">
 <ul class="nav nav-pills">
-  <li class="active"><a href="http://www.w3schools.com/php/default.asp">PHP/MySQL/AJAX Tutorial</a></li>
+  <li><a href="http://www.w3schools.com/php/default.asp">PHP/MySQL/AJAX Tutorial</a></li>
   <li><a href="https://sas.elluminate.com/site/external/recording/playback/link/table/meeting?suid=M.DE63425940BCC831A6EEBAF99817AC">Elluminate Archive</a></li>
     <li><a href="../html5/">CS 52.10</a></li>
    <li><a href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a></li>
@@ -349,8 +349,8 @@ possible to better ensure such accommodations are implemented in a timely fashio
         </div>
         </div>
         <footer class="row well well-large">
-        <h4>This page requires Javascript and is best viewed in the latest version of Google Chrome</h4>
-       <a href="https://www.google.com/intl/en/chrome/browser/"> <img src="https://www.google.com/intl/en/chrome/assets/common/images/chrome_logo_2x.png" /></a>
+        <h4>This page requires Javascript and is best viewed in the  <a href="https://www.google.com/intl/en/chrome/browser/">latest version of Google Chrome
+       <img src="../images/chrome.png" alt="Download Google Chrome" height="100" width="100" /></a></h4>
         </footer>
 </div>
 </body>

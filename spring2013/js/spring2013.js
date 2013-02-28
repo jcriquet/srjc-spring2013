@@ -56,9 +56,9 @@ $(document).ready(function() {
 		if (syllabus.lessons[lessonID].exercises) {
 		$.each(syllabus.lessons[lessonID].exercises, function(index, value) {
 			if (syllabus.lessons[lessonID].exercises[index].url) {
-			   lesson += '<p> <a class="btn btn-primary submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].url+'">'+syllabus.lessons[lessonID].exercises[index].description+'</a></p>';
+			   lesson += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].url+'">'+syllabus.lessons[lessonID].exercises[index].description+'</a></p>';
 			} else {
-				lesson += '<p> <a class="btn btn-primary submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
+				lesson += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
 			}
 	      if (syllabus.lessons[lessonID].exercises[index].homeworks) {
 			  $.each(syllabus.lessons[lessonID].exercises[index].homeworks,function(index2,value2) {

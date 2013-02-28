@@ -7,7 +7,7 @@ require('../authenticate_instructor.php');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jay Peretz | SRJC Spring 2013 | HTML5 Web Programming</title>
-<link href='http://fonts.googleapis.com/css?family=Arapey:400italic,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,700,700italic' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
@@ -50,7 +50,7 @@ var syllabus_id = 1;
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a class="btn btn-primary" id="update-profile">Save changes</a>
+    <a class="btn btn-warning" id="update-profile">Save changes</a>
   </div>
 </div>
  
