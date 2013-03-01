@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 , th , .student-listing {
 .jumbotron {
   position: relative;
   padding: 5px 5px;
-  color: #fff;
+  color:#222 !important;
 background: rgb(167,207,223); /* Old browsers */
 
 /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -45,13 +45,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', end
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 1;
-   color: #fff;
+   color:#222 !important;
+  	
 }
 .jumbotron p {
   font-size: 24px;
   font-weight: 300;
   line-height: 1.25;
   margin-bottom: 30px;
+   color:#222 !important;
 }
 .lesson-listing td ,  #general-info-hdr h2 , .student-listing {
 	cursor:pointer;
