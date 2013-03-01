@@ -158,11 +158,11 @@ var currentLesson = 6;
    Petaluma Campus Call Building Room PC643
 </p><p>Class attendance is strongly encouraged but not required, all lectures will be broadcast and recorded.</p>
 <h3>Live Broadcast</h3>
-<p>Visit <a class="label label-info"  href="http://www.cccconfer.org/">www.cccconfer.org</a> <br>
+<p>Visit <a  href="http://www.cccconfer.org/">www.cccconfer.org</a> <br>
   Click the Student Log-In button under the <strong>Teach & Confer logo</strong><br>
   Locate your meeting and click Go
   Fill out the form and enter the passcode: 882585</p>
-  <p>Watch the <a class="label label-info"  href="https://sas.elluminate.com/site/external/recording/playback/link/table/meeting?suid=M.4499381339B7E207E8E6778F438C63">Class Archives</a></p>
+  <p>Watch the <a  href="https://sas.elluminate.com/site/external/recording/playback/link/table/meeting?suid=M.4499381339B7E207E8E6778F438C63">Class Archives</a></p>
    -->
 <h3>Office Hours</h3>
 <p>Wednesdays 6:00PM-7:00PM<br>
@@ -171,15 +171,15 @@ var currentLesson = 6;
   <br>
 </p>
 <h3>Class Forum</h3>
-<p>The discussion forum below is the appropriate place to post questions and comments about the class materials or process that would pertinent to other students in the class. Please check the discussion board first if you have a question.     Students should  create a profile on <a class="label label-info"  href="http://www.disqus.com/">Disqus</a>  to follow discussions by email.   Exceptional community citizenship on the class discussion board can be worth up to 5 points of extra credit in the class. </p>
+<p>The discussion forum below is the appropriate place to post questions and comments about the class materials or process that would pertinent to other students in the class. Please check the discussion board first if you have a question.     Students should  create a profile on <a  href="http://www.disqus.com/">Disqus</a>  to follow discussions by email.   Exceptional community citizenship on the class discussion board can be worth up to 5 points of extra credit in the class. </p>
 
 <h3>Gradebook</h3>
 <p>Check your grades for exams and projects:</p> 
 <p>  
-<a class="label label-info"  href="http://online.santarosa.edu/gradebook/?5041">Gradebook</a> for  section 5371</a>  
+<a  href="http://online.santarosa.edu/gradebook/?5041">Gradebook</a> for  section 5371</a>  
 </p>
 <!--<p>  
-<a class="label label-info"  href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a> for  section 5250</a>  
+<a  href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a> for  section 5250</a>  
 </p>-->
 
           
@@ -195,14 +195,14 @@ Students will be able to:<br>
 
 <h4>Required Materials</h4>
 <p>There is NO REQUIRED SOFTWARE, although you will need a good code editor and a webserver account (an SRJC student account is fine, but you may also use your own domain or another host.) You will also need to use a current version of an HTML5 browser with a great element inspector (Chrome, FireFox, Opera or Internet Explorer 9+ will work.)</p>
-<p>A webserver account, either on your own domain or <a  class="label label-info" href="https://student.santarosa.edu:85/apply/linux-account.php">free Linux webserver accounts</a> are available through the Santa Rosa Junior College IT services. </p>
+<p>A webserver account, either on your own domain or <a  href="https://student.santarosa.edu:85/apply/linux-account.php">free Linux webserver accounts</a> are available through the Santa Rosa Junior College IT services. </p>
 <p>You may use the Computer Studies labs in Santa Rosa and Petaluma during regularly scheduled lab hours, or you may also work at your own computer. You MUST be self-sufficient with basic webserver fundamentals and be able to use FTP to deploy a website.</p>
-<p>An account on <a  class="label label-info" href="http://www.github.com/">github.com</a> for your project and exercise code repositories.   This will be discussed in class.</p>
+<p>An account on <a  href="http://www.github.com/">github.com</a> for your project and exercise code repositories.   This will be discussed in class.</p>
      </div>
     <div class="span4"> 
         <h4>Textbook</h4> 
         
-          <p>This class is based on <a  class="label label-info" href="http://diveintohtml5.info/">Dive Into HTML5</a> by Mark Pilgrim, which is available online for free. The book is also available as a paperback  published by O'Reilly (ISBN 978-0596806026) under the title of <a  class="label label-info" href="http://www.amazon.com/HTML5-Up-Running-Mark-Pilgrim/dp/0596806027/ref=sr_1_10?ie=UTF8&qid=1357772086&sr=8-10&keywords=html5"> HTML5: Up and Running </a>.</p>
+          <p>This class is based on <a  href="http://diveintohtml5.info/">Dive Into HTML5</a> by Mark Pilgrim, which is available online for free. The book is also available as a paperback  published by O'Reilly (ISBN 978-0596806026) under the title of <a  href="http://www.amazon.com/HTML5-Up-Running-Mark-Pilgrim/dp/0596806027/ref=sr_1_10?ie=UTF8&qid=1357772086&sr=8-10&keywords=html5"> HTML5: Up and Running </a>.</p>
        <!-- <p>This class has no REQUIRED textbooks.   , but  the curriculum is loosely based on these two books . There are many fantastic Javascript books, I highly recomment that you  have at least one or two available as you take this class.</p>-->
        
 
