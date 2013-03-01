@@ -31,7 +31,7 @@ var currentLesson = 6;
 
  <div class="container">
  
- <div id="submit-review" class="modal hide fade">
+ <div id="write-review" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
@@ -44,7 +44,7 @@ var currentLesson = 6;
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a class="btn btn-warning" id="submit-rev">Submit</a>
+    <a class="btn btn-warning" id="submit-review">Submit</a>
   </div>
 </div>
  

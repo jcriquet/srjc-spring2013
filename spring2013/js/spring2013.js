@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var syllabus;
 	$("#submit-homework").modal("hide");
-	$("#submit-review").modal("hide");
+	$("#write-review").modal("hide");
 	var getProfile = function(user) {
 		$.ajax({
        type: "GET",
@@ -64,9 +64,9 @@ $(document).ready(function() {
 			  $.each(syllabus.lessons[lessonID].exercises[index].homeworks,function(index2,value2) {
 				  
 				  if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL) {
-			   lesson += '<p class="muted"><a class="btn thumbs" href="#submit-review"><i class="icon-thumbs-up"></i></a><a class="btn thumbs" href="#submit-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+			   lesson += '<p class="muted"><a class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
 			} else {
-				lesson += '<p class="muted"><a class="btn thumbs" href="#submit-review"><i class="icon-thumbs-up"></i></a><a class="btn thumbs" href="#submit-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+				lesson += '<p class="muted"><a class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
 			}	
 						  
 			  });
@@ -79,7 +79,7 @@ $(document).ready(function() {
 			$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
 		});	
 		$(".thumbs").click(function() {
-			$("#submit-review").modal("show");
+			$("#write-review").modal("show");
 		//	$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
 		});	
     }
@@ -205,7 +205,7 @@ $(document).ready(function() {
 			   showLesson(data.lesson_id);
 		    });
 		});
-		$("#submit-rev").click(function() {
+		$("#submit-review").click(function() {
 		});
 
 });
