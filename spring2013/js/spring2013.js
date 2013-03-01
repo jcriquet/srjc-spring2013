@@ -132,6 +132,15 @@ $(document).ready(function() {
 			  } else {
 				$("#projectdesc").html("");  
 			  }
+			  // display submissions in student page
+			   $("#homeworks").text("");
+			  if (syllabus.students[$(this).attr("data-id")].homeworks) {
+				 
+				  $.each(syllabus.students[$(this).attr("data-id")].homeworks, function(index, value) {
+				    $("#homeworks").append('<p><a href="'+value.url+'">'+value.topics+'</a>&mdash;'+value.comment+'</p>');
+				  });
+			  }
+			  
 			  $("#viewprofile").modal('show');
 		 });
 		 };
@@ -191,6 +200,8 @@ $(document).ready(function() {
 			   $("#submit-exercise").modal('hide');
                var data = $.parseJSON(data);
 			   syllabus.lessons[data.lesson_id].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
+			   var newsubmission = {comment:data.comment, first_name:data.first_name, homework_id:data.homework_id, student_email:data.student_email, topics: syllabus.lessons[data.lesson_id].topics, url:data.URL};
+			   syllabus.students[data.student_email].homeworks[data.homework_id] = newsubmission;
 			   showLesson(data.lesson_id);
 		    });
 		});

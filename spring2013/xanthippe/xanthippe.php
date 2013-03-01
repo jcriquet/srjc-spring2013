@@ -39,6 +39,13 @@ if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, cou
     {
 	  $student->gravatar_hash = md5( strtolower( trim($student->email ) ) );
 	  $syllabus_array[$syllabus->syllabus_id]->students[$student->email] = $student;
+	     // get homework for each student
+	     if ($hwsubmissions = $mysqli->query('SELECT topics, homework_id,student_email, first_name, comment, homework.URL url FROM homework , student , exercise, lesson where student_email = email and exercise_exercise_id = exercise_id and lesson_lesson_id = lesson_id and email="'.$student->email.'"')) {
+            while ($hwsubmission = $hwsubmissions->fetch_object())
+             {
+				$syllabus_array[$syllabus->syllabus_id]->students[$student->email]->homeworks[$hwsubmission->homework_id] =  $hwsubmission;
+	         }
+	  }
 	}
    }
    /* Select the lessons in date order */

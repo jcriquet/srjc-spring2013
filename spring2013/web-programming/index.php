@@ -72,16 +72,15 @@ var currentLesson = 6;
     <h1 id="studentname" class="span3"></h1> <img id="studentavatar" class="img-polaroid" />
     <p id="studentemail"></p>
   </div>
-  <div class="modal-body"> 
- 
-  <p class="span5">On Github </p>
+  <div class="modal-body">  
+  <h4 class="span5">On Github </h4>
   <p id="studentgithub" class="span5"></p>
-   <p class="span5">Portfolio </p>
+   <h4 class="span5">Portfolio </h4>
   <p id="studentgalleryurl" class="span5"></p>
-     <p class="span5">Final Project Proposal</p>
-  <p id="projectdesc" class="span5"></p> 
-   <p class="span5">Exercises</p>
-  <div id="homeworks" class="span5"></div> 
+   <h4 class="span5">Final Project Proposal</h4>
+  <p id="projectdesc" class="span5"></p>  
+  <h4 class="span5">Exercises</h4>
+  <div id="homeworks" class="span5"></div>  
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
