@@ -73,6 +73,11 @@ if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, cou
 		if ($homeworks = $mysqli->query("SELECT homework_id,student_email, first_name,comment, URL FROM homework , student where student_email = email and exercise_exercise_id =".$exercise->exercise_id)) {
 			while ($homework = $homeworks->fetch_object()) {
 				$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->exercises[$exercise->exercise_id]->homeworks[$homework->homework_id] = $homework;
+				if ($reviews = $mysqli->query("SELECT review_id,student_email, first_name, grade,comment FROM review, student where student_email = email and homework_homework_id =".$homework->homework_id)) {
+					while ($review = $reviews->fetch_object()) {
+						$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->exercises[$exercise->exercise_id]->homeworks[$homework->homework_id]->reviews[$review->review_id] = $review;
+					}
+				}
 			}
 		}
 	}

@@ -144,6 +144,8 @@ $(document).ready(function() {
 				 
 				  $.each(syllabus.students[$(this).attr("data-id")].homeworks, function(index, value) {
 				    $("#homeworks").append('<p><a href="'+value.url+'">'+value.topics+'</a>&mdash;'+value.comment+'</p>');
+					// if reviews  
+					
 				  });
 			  }
 			  
@@ -226,6 +228,7 @@ $(document).ready(function() {
 				datatype:"json"
 			}).done(function(data) {
 				alert("Your comment was entered");
+				console.log(data);
 			});
 		});
 
