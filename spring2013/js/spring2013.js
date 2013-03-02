@@ -219,8 +219,14 @@ $(document).ready(function() {
 				grade=0;
 			}
 			var review = {comment:$("#review-comment").val(), student_email: user , homework_id:$("#submit-review").attr("homework-id"), grade:grade};
-			
-			console.log("Review:"+review.comment + review.student_email + review.homework_id + review.grade);
+			$.ajax({
+				type:"POST",
+				url:"../lesson-maker/put-review.php",
+				data: review,
+				datatype:"json"
+			}).done(function(data) {
+				alert("Your comment was entered");
+			});
 		});
 
 });
