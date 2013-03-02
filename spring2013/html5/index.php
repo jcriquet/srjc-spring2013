@@ -7,7 +7,7 @@ require('../authenticate.php');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jay Peretz | SRJC Spring 2013 | HTML5 Web Programming</title>
-<link href='http://fonts.googleapis.com/css?family=Lora:400,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="https://login.persona.org/include.js"></script>
@@ -35,12 +35,12 @@ var currentLesson = 6;
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
-    <h3>Peer Review of Exercise</h3>
+    <h3><i id="review-grade"></i> on Exercise </h3>
      
   </div>
   <div class="modal-body"> 
    <p class="span5"> Comment </p>
- <p  class="span5"> <textarea columns=600 rows=2 id="exercise-comment" name="exercise-comment"></textarea></p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="review-comment" name="review-comment"></textarea></p>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>

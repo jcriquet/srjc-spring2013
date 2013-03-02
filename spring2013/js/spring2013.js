@@ -64,9 +64,9 @@ $(document).ready(function() {
 			  $.each(syllabus.lessons[lessonID].exercises[index].homeworks,function(index2,value2) {
 				  
 				  if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL) {
-			   lesson += '<p class="muted"><a class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+			   lesson += '<p class="muted"><a data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
 			} else {
-				lesson += '<p class="muted"><a class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+				lesson += '<p class="muted"><a  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
 			}	
 						  
 			  });
@@ -79,8 +79,14 @@ $(document).ready(function() {
 			$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
 		});	
 		$(".thumbs").click(function() {
-			$("#write-review").modal("show");
-		//	$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
+			$("#review-grade").removeClass("icon-thumbs-up").removeClass("icon-thumbs-down");
+			if ($(this).hasClass("thumbsup")) {
+				$("#review-grade").addClass("icon-thumbs-up");
+			} else {
+				$("#review-grade").addClass("icon-thumbs-down");
+			}
+			$("#submit-review").attr("homework-id",$(this).attr("data-homeworkid"));		
+			$("#write-review").modal("show");		   	
 		});	
     }
     $.ajax({
@@ -206,6 +212,15 @@ $(document).ready(function() {
 		    });
 		});
 		$("#submit-review").click(function() {
+			var grade;
+			if ($("#review-grade").hasClass("icon-thumbs-up")) {
+				grade=1;
+			} else {
+				grade=0;
+			}
+			var review = {comment:$("#review-comment").val(), student_email: user , homework_id:$("#submit-review").attr("homework-id"), grade:grade};
+			
+			console.log("Review:"+review.comment + review.student_email + review.homework_id + review.grade);
 		});
 
 });
