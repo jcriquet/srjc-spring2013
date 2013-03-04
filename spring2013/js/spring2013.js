@@ -62,14 +62,24 @@ $(document).ready(function() {
 			}
 	      if (syllabus.lessons[lessonID].exercises[index].homeworks) {
 			  $.each(syllabus.lessons[lessonID].exercises[index].homeworks,function(index2,value2) {
-				  
 				  if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL) {
-			   lesson += '<p class="muted"><a data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+			   lesson += '<p class="muted"><a data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
 			} else {
-				lesson += '<p class="muted"><a  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+				lesson += '<p class="muted"><a  data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
 			}	
 						  
-			  });
+			
+			  if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews) {
+				    $.each(syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews,function(index3, value3) {
+						if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].grade == 1) {
+						lesson += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-up"></i>'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
+					    }  else {
+						lesson += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-down"></i>'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
+						}
+						
+				     });   
+			   } 
+			 });
 		  }
 		  });
 		}		
@@ -85,6 +95,7 @@ $(document).ready(function() {
 			} else {
 				$("#review-grade").addClass("icon-thumbs-down");
 			}
+			$("#review-subject").html($(this).attr("data-reviewee"));
 			$("#submit-review").attr("homework-id",$(this).attr("data-homeworkid"));		
 			$("#write-review").modal("show");		   	
 		});	
@@ -144,8 +155,7 @@ $(document).ready(function() {
 				 
 				  $.each(syllabus.students[$(this).attr("data-id")].homeworks, function(index, value) {
 				    $("#homeworks").append('<p><a href="'+value.url+'">'+value.topics+'</a>&mdash;'+value.comment+'</p>');
-					// if reviews  
-					
+					 
 				  });
 			  }
 			  
@@ -228,7 +238,10 @@ $(document).ready(function() {
 				datatype:"json"
 			}).done(function(data) {
 				alert("Your comment was entered");
-				console.log(data);
+				  var data = $.parseJSON(data);
+				 $("#write-review").modal('hide');
+				 syllabus.lessons[data.lesson_id].exercises[data.exercise_id].homeworks[data.homework_homework_id].reviews[data.review_id] = data;
+				 showLesson(data.lesson_id);
 			});
 		});
 

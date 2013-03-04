@@ -85,5 +85,8 @@ body.mceContentBody {
 a , a:hover  a:active , p.student-listing , #lesson-list td {
 	color:#900 !important;
 }
+#lesson-info p.review {
+	margin-left:45px;
+}
 
 
