@@ -59,45 +59,12 @@ $(document).ready(function() {
 					}
 			});
 	$('#studentid').text(user);
-	getProfile(user);
+	
 	showSyllabus(syllabus_id);
-	// event to update profile
-	$("#update-profile").click(function() {
-		if ($('#galleryurl').text() || $('#githubaccount').text()) {
-			var profile = {email:user,gallery_URL:$('#galleryurl').text() , github_userid:$('#githubaccount').text()}
-	   $.ajax({
-              type: "GET",
-              url: "put-profile.php",
-              data: { profile: profile },
-              datatype: "json"
-               }).done(function( data) {
-	     alert("Your Profile Was Updated");
-		 getProfile(user);
-		 $("#myprofile").modal('hide');
-		});
-		}
+
+	
 	});
-	});
-// get the user's profile
-var getProfile = function(user) {
-		$.ajax({
-       type: "GET",
-       url: "get-profile.php",
-       data: { email: user },
-       datatype: "json"
-      }).done(function( data) {
-		   data = $.parseJSON(data);
-		   console.log(data);
-		  $('#fullname').text(data.first_name + " " + data.last_name);
-		   $("#mygravatar").attr("src","http://www.gravatar.com/avatar/"+data.gravatar_hash);
-		  if (data.gallery_URL) {
-			  $('#galleryurl').text(data.gallery_URL);
-		  }
-		  if (data.github_userid) {
-			   $('#githubaccount').text(data.github_userid);
-		  }		  
-	  });
-	}
+
 //  function to build a full class with all lessons
 var showSyllabus = function(syllabus_id) {
 	var currentLesson = 1;

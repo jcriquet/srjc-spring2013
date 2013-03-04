@@ -25,7 +25,7 @@ var syllabus_id = 1;
 <header class="jumbotron subhead" id="overview">
   <div class="container">
    <div class="row">
-   <button class="btn span2 btn-info" type="button" id="profile" data-toggle="modal" data-target="#myprofile">Profile</button> <button class="btn span2 btn-success" type="button" id="logout">Logout</button> 
+    <button class="btn span2 btn-success" type="button" id="logout">Logout</button> 
    </div>
   <div class="row">
    <div class="span7"><h2 id="course-info"></h2></div><div class="span5" id="syllabus-menu"></div>
@@ -35,24 +35,7 @@ var syllabus_id = 1;
 
  <div class="container">
  
- <div id="myprofile" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h1 id="fullname" class="span3"></h1><img id="mygravatar"  class="img-polaroid" />
-    <p id="studentid"></p>
-  </div>
-  <div class="modal-body"> 
-  <p class="span5">Your github.com userid </p>
-  <p id="githubaccount" class="span5" contenteditable=true></p>
-   <p class="span5"> Your student gallery URL </p>
-  <p id="galleryurl" class="span5" contenteditable=true></p>
-    
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a class="btn btn-warning" id="update-profile">Save changes</a>
-  </div>
-</div>
+ 
  
   <div class="row">
     
