@@ -142,7 +142,7 @@ var currentLesson = 7;
   
  <div id="general-info-hdr" class="row jumbotron subhead">
  <div class="span12">
-  <h2>General Course Information <span style="font-size:80%;font-style:italic">(click to collapse &nbsp; <i class="icon-arrow-up icon-white"></i>&nbsp;<i class="icon-arrow-down icon-white"></i>&nbsp;&nbsp;)</span></h2>
+  <h2>General Course Information <span style="font-size:80%;font-style:italic">(click to collapse)</span></h2>
   </div>
   </div>
    <div class="row"  id="general-info">
