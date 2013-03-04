@@ -70,7 +70,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 	min-height:45px;
 }
 p[contenteditable] {
-	
+	min-height:20px;	
 -moz-box-shadow:  0 0 3px 3px #BBB;
 -webkit-box-shadow:  0 0 3px 3px#BBB;
 box-shadow:  0 0 3px 3px #BBB;
