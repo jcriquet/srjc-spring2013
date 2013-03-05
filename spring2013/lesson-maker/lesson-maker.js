@@ -71,7 +71,7 @@ var showSyllabus = function(syllabus_id) {
 	var syllabus;	 
     $.ajax({
        type: "GET",
-       url: "../xanthippe/xanthippe.php",
+       url: "lesson-maker.php",
        data: { syllabus_id: syllabus_id },
        datatype: "json"
       }).done(function( data) {
