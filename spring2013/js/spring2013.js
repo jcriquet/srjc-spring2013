@@ -25,56 +25,65 @@ $(document).ready(function() {
 	  });
 	}
     function showLesson(lessonID) {
-	    $("#lesson-topic").html(syllabus.lessons[lessonID].topics);
-		 $("#lesson-desc").html(syllabus.lessons[lessonID].description);
-		var lesson = "";
-		if (syllabus.lessons[lessonID].blogpost) {
-		    lesson += "<div class=blog>"+syllabus.lessons[lessonID].blogpost+"</div>";
+		$.ajax({
+       type: "GET",
+       url: "../xanthippe/lesson.php",
+       data: { lesson_id: lessonID },
+       datatype: "json"
+      }).done(function( data) {
+         data = $.parseJSON(data);
+         lesson = data[lessonID];
+		 console.log(lesson);
+	    $("#lesson-topic").html(lesson.topics);
+		 $("#lesson-desc").html(lesson.description);
+		var lessoncontent = "";
+		if (lesson.blogpost) {
+		    lessoncontent += "<div class=blog>"+lesson.blogpost+"</div>";
 		};
-		lesson += "<h2>Reading</h2>";
-		if (syllabus.lessons[lessonID].reads) {
-		$.each(syllabus.lessons[lessonID].reads, function(index, value) {
-			if (syllabus.lessons[lessonID].reads[index].title && syllabus.lessons[lessonID].reads[index].reading_url) {
-			 lesson += '<p><a href="'+syllabus.lessons[lessonID].reads[index].reading_url+'">'+syllabus.lessons[lessonID].reads[index].title+'&nbsp;'+syllabus.lessons[lessonID].reads[index].description+'</a></p>';
-			} else if (!syllabus.lessons[lessonID].reads[index].title && syllabus.lessons[lessonID].reads[index].reading_url)  {
-				lesson += '<p><a href="'+syllabus.lessons[lessonID].reads[index].reading_url+'">'+syllabus.lessons[lessonID].reads[index].description+'</a></p>';
-			} else if (syllabus.lessons[lessonID].reads[index].title && !syllabus.lessons[lessonID].reads[index].reading_url) {
-				lesson += '<p>'+syllabus.lessons[lessonID].reads[index].title+'&nbsp;'+syllabus.lessons[lessonID].reads[index].description+'</p>';
+		lessoncontent += "<h2>Reading</h2>";
+		if (lesson.reads) {
+		$.each(lesson.reads, function(index, value) {
+			if (lesson.reads[index].title && lesson.reads[index].reading_url) {
+			 lessoncontent += '<p><a href="'+lesson.reads[index].reading_url+'">'+lesson.reads[index].title+'&nbsp;'+lesson.reads[index].description+'</a></p>';
+			} else if (!lesson.reads[index].title && lesson.reads[index].reading_url)  {
+				lessoncontent += '<p><a href="'+lesson.reads[index].reading_url+'">'+lesson.reads[index].description+'</a></p>';
+			} else if (lesson.reads[index].title && !lesson.reads[index].reading_url) {
+				lessoncontent += '<p>'+lesson.reads[index].title+'&nbsp;'+lesson.reads[index].description+'</p>';
 			} else {
-				lesson += '<p>'+syllabus.lessons[lessonID].reads[index].description+'</p>';
+				lessoncontent += '<p>'+lesson.reads[index].description+'</p>';
 			}
 	      });
 		}
-		lesson += "<h2>Explore </h2>";
-		lesson += "<h4>Non-manditory readings and exercises.  Choose the ones that you find interesting.</h4>"; 
-		if (syllabus.lessons[lessonID].explores) {
-		$.each(syllabus.lessons[lessonID].explores, function(index, value) {
-			 lesson += '<p><a href="'+syllabus.lessons[lessonID].explores[index].url+'">'+syllabus.lessons[lessonID].explores[index].description+'</a></p>';
+		lessoncontent += "<h2>Explore </h2>";
+		lessoncontent += "<h4>Non-manditory readings and exercises.  Choose the ones that you find interesting.</h4>"; 
+		if (lesson.explores) {
+		$.each(lesson.explores, function(index, value) {
+			 lessoncontent += '<p><a href="'+lesson.explores[index].url+'">'+lesson.explores[index].description+'</a></p>';
 	      });
 		}
-		lesson += "<h2>Exercises</h2>";
-		if (syllabus.lessons[lessonID].exercises) {
-		$.each(syllabus.lessons[lessonID].exercises, function(index, value) {
-			if (syllabus.lessons[lessonID].exercises[index].url) {
-			   lesson += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].url+'">'+syllabus.lessons[lessonID].exercises[index].description+'</a></p>';
+		lessoncontent += "<h2>Exercises</h2>";
+		if (lesson.exercises) {
+		$.each(lesson.exercises, function(index, value) {
+			if (lesson.exercises[index].url) {
+			   lessoncontent += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+lesson.exercises[index].exercise_id+'">Submit</a>&nbsp;<a href="'+lesson.exercises[index].url+'">'+lesson.exercises[index].description+'</a></p>';
 			} else {
-				lesson += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+syllabus.lessons[lessonID].exercises[index].exercise_id+'">Submit</a>&nbsp;'+syllabus.lessons[lessonID].exercises[index].description+'</p>';
+				lessoncontent += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+lesson.exercises[index].exercise_id+'">Submit</a>&nbsp;'+lesson.exercises[index].description+'</p>';
 			}
-	      if (syllabus.lessons[lessonID].exercises[index].homeworks) {
-			  $.each(syllabus.lessons[lessonID].exercises[index].homeworks,function(index2,value2) {
-				  if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL) {
-			   lesson += '<p class="muted"><a data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].URL+'">'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'</a>&mdash; '+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+	      if (lesson.exercises[index].homeworks) {
+			  $.each(lesson.exercises[index].homeworks,function(index2,value2) {
+				  if (lesson.exercises[index].homeworks[index2].URL) {
+			   lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>&mdash; '+lesson.exercises[index].homeworks[index2].comment+'</p>';
 			} else {
-				lesson += '<p class="muted"><a  data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].first_name+'&mdash;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].comment+'</p>';
+				lessoncontent += '<p class="muted"><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].first_name+'&mdash;'+lesson.exercises[index].homeworks[index2].comment+'</p>';
 			}	
 						  
 			
-			  if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews) {
-				    $.each(syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews,function(index3, value3) {
-						if (syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].grade == 1) {
-						lesson += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-up"></i>'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
+			  if (lesson.exercises[index].homeworks[index2].reviews) {
+				    $.each(lesson.exercises[index].homeworks[index2].reviews,function(index3, value3) {
+						if (lesson.exercises[index].homeworks[index2].reviews[index3].grade == 1) {
+						lessoncontent += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-up"></i>'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
 					    }  else {
-						lesson += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-down"></i>'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+syllabus.lessons[lessonID].exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
+						lessoncontent += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-down"></i>'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
 						}
 						
 				     });   
@@ -83,7 +92,7 @@ $(document).ready(function() {
 		  }
 		  });
 		}		
-		$("#lesson-info").html(lesson);	
+		$("#lesson-info").html(lessoncontent);	
 		$(".submit-hw").click(function() {
 			$("#submit-homework").modal("show");
 			$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
@@ -99,10 +108,12 @@ $(document).ready(function() {
 			$("#submit-review").attr("homework-id",$(this).attr("data-homeworkid"));		
 			$("#write-review").modal("show");		   	
 		});	
+	  }); //close ajax done
     }
+	
     $.ajax({
        type: "GET",
-       url: "../xanthippe/xanthippe.php",
+       url: "../xanthippe/syllabus.php",
        data: { syllabus_id: syllabus_id },
        datatype: "json"
       }).done(function( data) {
@@ -217,7 +228,7 @@ $(document).ready(function() {
 	           alert("Your exercise was submitted");
 			   $("#submit-exercise").modal('hide');
                var data = $.parseJSON(data);
-			   syllabus.lessons[data.lesson_id].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
+		//	   syllabus.lessons[data.lesson_id].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
 			   var newsubmission = {comment:data.comment, first_name:data.first_name, homework_id:data.homework_id, student_email:data.student_email, topics: syllabus.lessons[data.lesson_id].topics, url:data.URL};
 			   syllabus.students[data.student_email].homeworks[data.homework_id] = newsubmission;
 			   showLesson(data.lesson_id);
@@ -240,7 +251,7 @@ $(document).ready(function() {
 				alert("Your comment was entered");
 				  var data = $.parseJSON(data);
 				 $("#write-review").modal('hide');
-				 syllabus.lessons[data.lesson_id].exercises[data.exercise_id].homeworks[data.homework_homework_id].reviews[data.review_id] = data;
+				// syllabus.lessons[data.lesson_id].exercises[data.exercise_id].homeworks[data.homework_homework_id].reviews[data.review_id] = data;
 				 showLesson(data.lesson_id);
 			});
 		});

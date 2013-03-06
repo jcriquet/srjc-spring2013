@@ -53,35 +53,7 @@ if ($syllabi = $mysqli->query("SELECT syllabus_id, semester, section_number, cou
    while ($lesson = $lessons->fetch_object())
     {
 	  $syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id] = $lesson;
-	  /* Select the reading */
-	  if ($reads = $mysqli->query("SELECT read_id,description, title, ISDN, author, url, cover_image, optional, reading_url FROM reading LEFT JOIN resource on (resource.resource_id = reading.resource_resource_id) where lesson_lesson_id =".$lesson->lesson_id)) {
-   while ($read = $reads->fetch_object())
-    {
-		$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->reads[$read->read_id] = $read;
-	}
-	  }
-	  if ($explores = $mysqli->query("SELECT explore_id, description, resource_type, url FROM explore where lesson_lesson_id =".$lesson->lesson_id)) {
-   while ($explore = $explores->fetch_object())
-    {
-		$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->explores[$explore->explore_id] = $explore;
-	}
-	  }
-	  if ($exercises = $mysqli->query("SELECT exercise_id,description, url FROM exercise where lesson_lesson_id =".$lesson->lesson_id)) {
-   while ($exercise = $exercises->fetch_object())
-    {
-		$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->exercises[$exercise->exercise_id] = $exercise;
-		if ($homeworks = $mysqli->query("SELECT homework_id,student_email, first_name,comment, URL FROM homework , student where student_email = email and exercise_exercise_id =".$exercise->exercise_id)) {
-			while ($homework = $homeworks->fetch_object()) {
-				$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->exercises[$exercise->exercise_id]->homeworks[$homework->homework_id] = $homework;
-				if ($reviews = $mysqli->query("SELECT review_id,student_email, first_name, grade,comment FROM review, student where student_email = email and homework_homework_id =".$homework->homework_id)) {
-					while ($review = $reviews->fetch_object()) {
-						$syllabus_array[$syllabus->syllabus_id]->lessons[$lesson->lesson_id]->exercises[$exercise->exercise_id]->homeworks[$homework->homework_id]->reviews[$review->review_id] = $review;
-					}
-				}
-			}
-		}
-	}
-	  }
+	 
 	 }
    }
    }
