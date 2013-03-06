@@ -211,6 +211,9 @@ $(document).ready(function() {
                }).done(function( data) {
 	     alert("Your Profile Was Updated");
 		 getProfile(user);
+		 syllabus.students[user].project_description = profile.project_description;
+		 syllabus.students[user].gallery_URL = profile.gallery_URL;
+		 syllabus.students[user].github_userid = profile.github_userid;
 		 $("#myprofile").modal('hide');
 		});
 		}
