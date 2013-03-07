@@ -35,7 +35,7 @@ var currentLesson = 6;
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
-    <h3><i id="review-grade"></i> for exercise by <span id="review-subject"></span> </h3>
+    <h3><i id="review-grade"></i> for <span id="review-subject"></span> </h3>
      
   </div>
   <div class="modal-body"> 
