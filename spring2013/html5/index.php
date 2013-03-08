@@ -24,7 +24,34 @@ var currentLesson = 6;
 <body>
 <header class="jumbotron subhead" id="overview">
   <div class="container">
+  <div id="final-project" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
+      <h3>About the  Final Project </h3>
+     
+  </div>
+  <div class="modal-body"> 
+  <dl class="dl-horizontal">
+  <dt>Proposal Due Date</dt>
+  <dd>4/1/2013</dd>
+  <dt>Project Due Date</dt>
+  <dd>5/12/2013</dd>
+  <dt>Project Scope</dt>
+  <dd>Create a website or web application that demonstrates your ability to implement at least six of the lessons presented in this class, in an integrated and logical way. </dd>
+  <dt>HTML5 Page Structure<br>
+10 points</dt><dd> The website needs to be structured semantically, using current document and metadata markup.</dd> <dt>Interactivity<br>
+45 points</dt> <dd> The website needs to provide some way of interacting with the user - either through form elements, services such as  geolocation or data apis, or visual interactions using media or vector elements. </dd> <dt>Responsive Layout<br>
+25 points</dt>  <dd>  The website page layouts must be designed for at least 2 screen-widths  using basic HTML5 viewport and media query capabilities.  </dd>
+<dt>Overall Concept & Execution<br>
+20 points</dt>  <dd>How innovative is your website concept and how fully realized is it the project. </dd>
+</dl>
+  <div id="project-list"></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
    <h2 class="page-header" id="course-info"></h2>
   </div>
 </header>
@@ -116,6 +143,7 @@ var currentLesson = 6;
    <li><a href="http://online.santarosa.edu/gradebook/?5041">Gradebook</a></li>
  <li><a href="https://web-srjc.wikispaces.com/Web+Glossary">Glossary Wiki</a></li>
    <li><a href="http://web-srjc.wikispaces.com/Web+Development+Links">Links Wiki</a></li>
+   <li><a href="#" data-toggle="modal" data-target="#final-project">Final Project</a></li>
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
   <li><a href="#" id="logout">Logout</a></li>
 </ul>

@@ -29,6 +29,36 @@ var currentLesson = 8;
 </header>
 
  <div class="container">
+ <div id="final-project" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+      <h3>About the  Final Project </h3>
+     
+  </div>
+  <div class="modal-body"> 
+  <dl class="dl-horizontal">
+  <dt>Proposal Due Date</dt>
+  <dd>4/1/2013</dd>
+  <dt>Project Due Date</dt>
+  <dd>5/12/2013</dd>
+  <dt>Project Scope</dt>
+  <dd>Create a Database-Driven Website using PHP & MySQL, with an application of your choice.    There are SO many applications you can choose, for example: a TO-DO list, a recipe book, a catalog of your music, a contact list of your friends that automatically sends e-birthday & e-holiday cards, a specialized blog or content management system (such as this class webpage)...</dd> 
+  <dt>Database Interaction<br>
+30 points</dt><dd> The website needs to demonstrate the ability to interact with data in a database using the PHP - AJAX - Javascript techniques demonstrated in the class tutorials.</dd> <dt>Database Design<br>
+25 points</dt> <dd> The database needs to be designed using the entity-relationship constraints we explored in the SQL tutorials (ie not in one table). </dd> <dt>Responsive Layout<br>
+25 points</dt>  <dd>  The website page layouts must be designed for at least 2 screen-widths  using basic HTML5 viewport and media query capabilities.  </dd>
+<dt>Overall Concept & Execution<br>
+20 points</dt>  <dd>How innovative is your website concept and how fully realized is it the project. </dd>
+</dl>
+  <div id="project-list"></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+ 
+ 
  <div id="write-review" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -115,6 +145,7 @@ var currentLesson = 8;
    <li><a href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a></li>
    <li><a href="https://web-srjc.wikispaces.com/Web+Glossary">Glossary Wiki</a></li>
    <li><a href="http://web-srjc.wikispaces.com/Web+Development+Links">Links Wiki</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#final-project">Final Project</a></li>
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
   <li><a href="#" id="logout">Logout</a></li>
 </ul>

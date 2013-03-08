@@ -24,6 +24,20 @@ $(document).ready(function() {
 		  }		  
 	  });
 	}
+	function listProjects() {
+        var projectList = "";
+		$("#project-list").html(projectList);
+		projectList += '<table class="table table-condensed table-striped"><tbody>';
+		$.each(syllabus.students,function(index,value) {
+			if (syllabus.students[index].project_description) {
+			projectList += '<tr><td>'+syllabus.students[index].first_name+'</td><td>'+syllabus.students[index].project_description+'</td></tr>';			
+			} else {
+				projectList += '<tr><td>'+syllabus.students[index].first_name+'</td><td></td></tr>';
+			}
+		});
+        projectList += '</tbody></table>';
+		$("#project-list").html(projectList);
+	}
     function showLesson(lessonID) {
 		$.ajax({
        type: "GET",
@@ -175,7 +189,8 @@ $(document).ready(function() {
 		 };
 		 showLesson($("table#lesson-list tbody tr").eq(currentLesson).attr("data-id"));
 		 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
-      });
+		 listProjects();
+       });
 	   $("#general-info").hide();
    $("#general-info-hdr").click(function() {
 	   $("#general-info").slideToggle('slow');
@@ -258,5 +273,5 @@ $(document).ready(function() {
 				 showLesson(data.lesson_id);
 			});
 		});
-
+		
 });
