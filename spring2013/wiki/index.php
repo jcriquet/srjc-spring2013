@@ -15,30 +15,18 @@ require('../authenticate.php');
 <link href="../css/spring2013.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
-var syllabus_id = 1;
-var currentLesson = 7;
 </script>
-<script src="../js/spring2013.js"></script>
+<script src="../js/wiki.js"></script>
 </head>
 
 <body>
 <header class="jumbotron subhead" id="overview">
   <div class="container">
   
-   <h2 class="page-header" id="course-info"></h2>
+   <h2 class="page-header">Web Development Wiki</h2>
   </div>
 </header>
-
- <div class="container">
- 
- 
- 
- 
-
-
-
-
-
+<div class="container">
 <nav class="row">
 <div class="span12">
 <ul class="nav nav-pills">
@@ -49,8 +37,17 @@ var currentLesson = 7;
 </nav>
 
   <div class="row">
- <!-- main content-->
-    
+ <div class="span8">
+ <h3>Glossary of Terms</h3>
+ <div id="glossary"></div>
+ 
+ </div>
+    <div class="span4">
+ 
+  <h3>Online References</h3>
+ <div id="references"></div>
+  
+ </div>
    
     </div>  
   
