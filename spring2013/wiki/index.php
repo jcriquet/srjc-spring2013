@@ -27,6 +27,24 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
   </div>
 </header>
 <div class="container">
+<div id="write-definition" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+    <h3>Add or Edit a Web Term Definition </h3>
+     
+  </div>
+  <div class="modal-body"> 
+  <p class="span5">Web Term </p>
+  <p id="enter-term" class="span5" contenteditable=true></p>
+   <p class="span5"> Definition </p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="enter-definition" name="review-comment"></textarea></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a class="btn btn-warning" id="submit-definition">Submit</a>
+  </div>
+</div>
 <nav class="row">
 <div class="span12">
 <ul class="nav nav-pills">
@@ -38,7 +56,10 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
 
   <div class="row">
  <div class="span8">
- <h3>Glossary of Terms</h3>
+ <div class="row">
+ <h3 class="span5">Glossary of Terms</h3>
+  <button class="btn btn-large span3" type="button" id="add-definition" data-toggle="modal" data-target="#write-definition">Add or Edit a Term</button>
+ </div>
  <div id="glossary"></div>
  
  </div>
