@@ -16,7 +16,7 @@ require('../authenticate.php');
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
 </script>
-<script src="../js/wiki.js"></script>
+<script src="wiki.js"></script>
 </head>
 
 <body>
