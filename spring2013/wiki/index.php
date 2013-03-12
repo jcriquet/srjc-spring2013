@@ -50,6 +50,7 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
 <ul class="nav nav-pills">
    <li><a href="../html5/">CS 52.10</a></li>
     <li><a href="../web-programming/">CS 53.11B</a></li>
+     <li><a href="../glossary/">Glossary Essay</a></li>
 </ul>
 </div>
 </nav>
@@ -58,7 +59,7 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
  <div class="span8">
  <div class="row">
  <h3 class="span5">Glossary of Terms</h3>
-  <button class="btn btn-large span3" type="button" id="add-definition" data-toggle="modal" data-target="#write-definition">Add or Edit a Term</button>
+  <button class="btn btn-large span3" type="button" id="add-definition" data-toggle="modal" data-target="#write-definition">Add or Amend a Term</button>
  </div>
  <div id="glossary"></div>
  

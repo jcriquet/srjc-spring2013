@@ -16,7 +16,7 @@ require('../authenticate.php');
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
 var syllabus_id = 1;
-var currentLesson = 7;
+var currentLesson = 8;
 </script>
 <script src="../js/spring2013.js"></script>
 </head>
@@ -142,6 +142,7 @@ var currentLesson = 7;
     <li><a href="../web-programming/">CS 53.11B</a></li>
    <li><a href="http://online.santarosa.edu/gradebook/?5041">Gradebook</a></li>
  <li><a href="../wiki/">Wiki</a></li>
+   <li><a href="../glossary/">Glossary Essay</a></li>
    <li><a href="#" data-toggle="modal" data-target="#final-project">Final Project</a></li>
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
   <li><a href="#" id="logout">Logout</a></li>

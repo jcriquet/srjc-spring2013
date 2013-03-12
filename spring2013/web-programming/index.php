@@ -144,6 +144,7 @@ var currentLesson = 8;
     <li><a href="../html5/">CS 52.10</a></li>
    <li><a href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a></li>
    <li><a href="../wiki/">Wiki</a></li>
+     <li><a href="../glossary/">Glossary Essay</a></li>
     <li><a href="#" data-toggle="modal" data-target="#final-project">Final Project</a></li>
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
   <li><a href="#" id="logout">Logout</a></li>
