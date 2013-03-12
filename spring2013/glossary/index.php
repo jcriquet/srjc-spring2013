@@ -38,17 +38,22 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
 
   <div class="row">
          <div class="span12">
-         <div class="row">
-            <h3 class="span12">Glossary of Terms</h3> 
-         </div>
+         
+           <div class="row"> 
+            <div class="span12"><h3>Instructions</h3>  
+            <p>This is a bit like musical definitions.  There are over 50 terms that need to be defined, more than enough for each student.  Each student chooses a term and writes a definition for that term.   Your definition will <a href="../wiki/index.php">appear in the class WIKI</a>.   Each definition should be at least two sentences long, consider it like an essay question.   Once a student selects a term, it is no longer available for other students, so choosing your term early is an advantage.   Please only select and define one term.</p>
+            </div>
+            </div> 
+        
          
           <div class="row"> 
-            <div class="span4">
+            <div class="span3"><h3>Choose a Term</h3> 
           		<select id="openterms">
                 </select>
                 </div>
-                  <div class="span4">
-          		<textarea rows="3" id="enter-definition"></textarea>
+                  <div class="span5">
+                  <h3>Write a Definition</h3> 
+          		<textarea rows="3" id="enter-definition" width="400"></textarea>
                 </div>
                  <div class="span4">
           		<button class="btn btn-large btn-warning" type="button" id="add-definition">Submit</button>
