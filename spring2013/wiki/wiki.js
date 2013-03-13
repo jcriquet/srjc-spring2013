@@ -6,7 +6,7 @@ $(document).ready(function() {
            datatype: "json"
 	    }).done(function(data) {
 		   var terms = $.parseJSON(data);
-		   var content = '<dl class="dl-horizontal">';
+		   var content = '<dl">';
 		   $.each(terms, function(index, value) {			   
 			   content += '<dt>'+value.term+'</dt>';
 			   if (value.definition) {
