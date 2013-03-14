@@ -43,6 +43,7 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
            <div class="row"> 
             <div class="span12"><h3>Instructions</h3>  
             <p>This is a bit like musical definitions.  There are over 50 terms that can to be defined, more than enough for every student.  Each student chooses a term and writes a definition for that term.   Your definition will <a href="../wiki/index.php">appear in the class WIKI</a>.   Each definition should be at least two sentences long, consider it like an essay question.  Write the definition in your own words and in a way that is useful to the rest of the class.   Do not copy and paste from Wikipedia or another source.     Once a student selects a term, it is no longer available on this page for other students, so choosing your term early is an advantage.   Please only select and define one term on this page.</p><p>Once a term has been defined, other students can amend the definition on the <a href="../wiki/index.php">Wiki page</a>.   In addition, you can add new terms and definitions <a href="../wiki/index.php">on the Wiki page</a> beyond the terms listed here (credit for participation.)</p>
+         <p><strong>Note:</strong> Please do not enter HTML tags directly into the definition or term.   Is is easiers if you just enter element names in all CAPS.   If you insist on displaying an HTML tag, you must use the HTML character codes for the opening and closing angle brackets, and wrap all code within CODE tags. </p>
             </div>
             </div> 
         

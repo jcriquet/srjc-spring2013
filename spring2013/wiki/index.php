@@ -58,7 +58,8 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
   <div class="row">
  <div class="span8">
  <div class="row">
- <h3 class="span5">Glossary of Terms</h3>
+ <h3>Glossary of Terms</h3>
+ <p><strong>Note:</strong> Please do not enter HTML tags directly into the definition or term.   Is is easiers if you just enter element names in all CAPS.   If you insist on displaying an HTML tag, you must use the HTML character codes for the opening and closing angle brackets, and wrap all code within CODE tags. </p>
   <button class="btn btn-large span3" type="button" id="add-definition" data-toggle="modal" data-target="#write-definition">Add or Amend a Term</button>
  </div>
  <div id="glossary"></div>
