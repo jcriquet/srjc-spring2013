@@ -54,8 +54,9 @@ $(document).ready(function() {
 		if (lesson.blogpost) {
 		    lessoncontent += "<div class=blog>"+lesson.blogpost+"</div>";
 		};
-		lessoncontent += "<h2>Reading</h2>";
+		// display any reading assignments for this lesson
 		if (lesson.reads) {
+		lessoncontent += "<h2>Reading</h2>";
 		$.each(lesson.reads, function(index, value) {
 			if (lesson.reads[index].title && lesson.reads[index].reading_url) {
 			 lessoncontent += '<p><a href="'+lesson.reads[index].reading_url+'">'+lesson.reads[index].title+'&nbsp;'+lesson.reads[index].description+'</a></p>';
@@ -68,21 +69,24 @@ $(document).ready(function() {
 			}
 	      });
 		}
+		// display any explore links for this lesson
+		if (lesson.explores) {
 		lessoncontent += "<h2>Explore </h2>";
 		lessoncontent += "<h4>Non-manditory readings and exercises.  Choose the ones that you find interesting.</h4>"; 
-		if (lesson.explores) {
 		$.each(lesson.explores, function(index, value) {
 			 lessoncontent += '<p><a href="'+lesson.explores[index].url+'">'+lesson.explores[index].description+'</a></p>';
 	      });
 		}
-		lessoncontent += "<h2>Exercises</h2>";
+		// display any exercises for this lesson
 		if (lesson.exercises) {
+		lessoncontent += "<h2>Exercises</h2>";
 		$.each(lesson.exercises, function(index, value) {
 			if (lesson.exercises[index].url) {
 			   lessoncontent += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+lesson.exercises[index].exercise_id+'">Submit</a>&nbsp;<a href="'+lesson.exercises[index].url+'">'+lesson.exercises[index].description+'</a></p>';
 			} else {
 				lessoncontent += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+lesson.exercises[index].exercise_id+'">Submit</a>&nbsp;'+lesson.exercises[index].description+'</p>';
 			}
+			//display any homework submissions for this extercise
 	      if (lesson.exercises[index].homeworks) {
 			  $.each(lesson.exercises[index].homeworks,function(index2,value2) {
 				  if (lesson.exercises[index].homeworks[index2].URL) {
@@ -90,8 +94,7 @@ $(document).ready(function() {
 			} else {
 				lessoncontent += '<p class="muted"><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].first_name+'&mdash;'+lesson.exercises[index].homeworks[index2].comment+'</p>';
 			}	
-						  
-			
+		// display any reviews of a homework submission		
 			  if (lesson.exercises[index].homeworks[index2].reviews) {
 				    $.each(lesson.exercises[index].homeworks[index2].reviews,function(index3, value3) {
 						if (lesson.exercises[index].homeworks[index2].reviews[index3].grade == 1) {
