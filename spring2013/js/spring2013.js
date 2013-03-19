@@ -86,14 +86,22 @@ $(document).ready(function() {
 			} else {
 				lessoncontent += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+lesson.exercises[index].exercise_id+'">Submit</a>&nbsp;'+lesson.exercises[index].description+'</p>';
 			}
-			//display any homework submissions for this extercise
+			//display any homework submissions for this exercise
 	      if (lesson.exercises[index].homeworks) {
 			  $.each(lesson.exercises[index].homeworks,function(index2,value2) {
+				    if (value2.student_email === user) {
+				 if (lesson.exercises[index].homeworks[index2].URL) {
+			   lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>&mdash; '+lesson.exercises[index].homeworks[index2].comment+'&nbsp;<a class="btn btn-mini remove-homework" data-id="'+ index2 +'"><i class="icon-remove"></i></a></p>';
+			} else {
+				lessoncontent += '<p class="muted"><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].first_name+'&mdash;'+lesson.exercises[index].homeworks[index2].comment+'&nbsp;<a class="btn btn-mini remove-homework" data-id="'+ index2 +'"><i class="icon-remove"></i></a></p>';
+			}									
+					} else {
 				  if (lesson.exercises[index].homeworks[index2].URL) {
 			   lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>&mdash; '+lesson.exercises[index].homeworks[index2].comment+'</p>';
 			} else {
 				lessoncontent += '<p class="muted"><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].first_name+'&mdash;'+lesson.exercises[index].homeworks[index2].comment+'</p>';
 			}	
+					}
 		// display any reviews of a homework submission		
 			  if (lesson.exercises[index].homeworks[index2].reviews) {
 				    $.each(lesson.exercises[index].homeworks[index2].reviews,function(index3, value3) {
@@ -110,10 +118,12 @@ $(document).ready(function() {
 		  });
 		}		
 		$("#lesson-info").html(lessoncontent);	
+		// set event to submit homework
 		$(".submit-hw").click(function() {
 			$("#submit-homework").modal("show");
 			$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
 		});	
+		// set event to enter a review of a homework submission
 		$(".thumbs").click(function() {
 			$("#review-grade").removeClass("icon-thumbs-up").removeClass("icon-thumbs-down");
 			if ($(this).hasClass("thumbsup")) {
@@ -125,6 +135,18 @@ $(document).ready(function() {
 			$("#submit-review").attr("homework-id",$(this).attr("data-homeworkid"));		
 			$("#write-review").modal("show");		   	
 		});	
+		$(".remove-homework").click(function() {
+			var homeworkID = $(this).attr("data-id");
+			$.ajax({
+					  type: "POST",
+					  url: "../lesson-maker/remove-homework.php", 
+					  data: { homework: homeworkID }
+					}).done(function(data) {
+						alert("Your submission was deleted.");
+						showLesson(lessonID);
+						syllabus.students[user].homeworks[homeworkID] = null;
+					});
+		});
 	  }); //close ajax done
     }
 	
@@ -251,6 +273,10 @@ $(document).ready(function() {
                var data = $.parseJSON(data);
 		//	   syllabus.lessons[data.lesson_id].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
 			   var newsubmission = {comment:data.comment, first_name:data.first_name, homework_id:data.homework_id, student_email:data.student_email, topics: syllabus.lessons[data.lesson_id].topics, url:data.URL};
+			    if (!syllabus.students[data.student_email].homeworks) {
+					syllabus.students[data.student_email].homeworks = {};
+				}
+				// update the student record with the new submission
 			   syllabus.students[data.student_email].homeworks[data.homework_id] = newsubmission;
 			   showLesson(data.lesson_id);
 		    });
