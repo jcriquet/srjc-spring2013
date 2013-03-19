@@ -89,27 +89,22 @@ $(document).ready(function() {
 			//display any homework submissions for this exercise
 	      if (lesson.exercises[index].homeworks) {
 			  $.each(lesson.exercises[index].homeworks,function(index2,value2) {
-				    if (value2.student_email === user) {
-				 if (lesson.exercises[index].homeworks[index2].URL) {
-			   lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>&mdash; '+lesson.exercises[index].homeworks[index2].comment+'&nbsp;<a class="btn btn-mini remove-homework" data-id="'+ index2 +'"><i class="icon-remove"></i></a></p>';
-			} else {
-				lessoncontent += '<p class="muted"><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].first_name+'&mdash;'+lesson.exercises[index].homeworks[index2].comment+'&nbsp;<a class="btn btn-mini remove-homework" data-id="'+ index2 +'"><i class="icon-remove"></i></a></p>';
-			}									
-					} else {
-				  if (lesson.exercises[index].homeworks[index2].URL) {
-			   lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>&mdash; '+lesson.exercises[index].homeworks[index2].comment+'</p>';
-			} else {
-				lessoncontent += '<p class="muted"><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].first_name+'&mdash;'+lesson.exercises[index].homeworks[index2].comment+'</p>';
-			}	
-					}
+				  lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2+'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;';
+				  //does the submission have a url link
+				  lessoncontent += (lesson.exercises[index].homeworks[index2].URL) ? '<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>' : '+lesson.exercises[index].homeworks[index2].first_name+' ;
+				  lessoncontent += '&mdash; '+lesson.exercises[index].homeworks[index2].comment+'&nbsp;';
+				  // is this submission by the current logged in user
+				  lessoncontent += (value2.student_email === user) ? '<a class="btn btn-mini remove-homework" data-id="'+ index2 +'"><i class="icon-remove"></i></a></p>' : '</p>';				
 		// display any reviews of a homework submission		
 			  if (lesson.exercises[index].homeworks[index2].reviews) {
 				    $.each(lesson.exercises[index].homeworks[index2].reviews,function(index3, value3) {
-						if (lesson.exercises[index].homeworks[index2].reviews[index3].grade == 1) {
-						lessoncontent += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-up"></i>'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
-					    }  else {
-						lessoncontent += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-down"></i>'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
-						}
+						lessoncontent += '<p class="muted review">&nbsp;&nbsp;';
+						//thumbs up or thumbs dowm
+						lessoncontent += (lesson.exercises[index].homeworks[index2].reviews[index3].grade == 1) ?'<i class="icon-thumbs-up"></i>' : '<i class="icon-thumbs-down"></i>';
+						lessoncontent += '&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'';
+						 // is this review by the current logged in user
+						lessoncontent += (value3.student_email === user) ? '&nbsp;<a class="btn btn-mini remove-review" data-id="'+ index3 +'"><i class="icon-remove"></i></a></p>' : '</p>';
+						
 						
 				     });   
 			   } 
@@ -144,7 +139,18 @@ $(document).ready(function() {
 					}).done(function(data) {
 						alert("Your submission was deleted.");
 						showLesson(lessonID);
-						syllabus.students[user].homeworks[homeworkID] = null;
+						syllabus.students[user].homeworks[homeworkID] = {};
+					});
+		});
+		$(".remove-review").click(function() {
+			var reviewID = $(this).attr("data-id");
+			$.ajax({
+					  type: "POST",
+					  url: "../lesson-maker/remove-review.php", 
+					  data: { review: reviewID }
+					}).done(function(data) {
+						alert("Your review was deleted.");
+						showLesson(lessonID);
 					});
 		});
 	  }); //close ajax done
@@ -204,8 +210,9 @@ $(document).ready(function() {
 			  if (syllabus.students[$(this).attr("data-id")].homeworks) {
 				 
 				  $.each(syllabus.students[$(this).attr("data-id")].homeworks, function(index, value) {
+					  if (value.topics) {
 				    $("#homeworks").append('<p><a href="'+value.url+'">'+value.topics+'</a>&mdash;'+value.comment+'</p>');
-					 
+					  }
 				  });
 			  }
 			  
