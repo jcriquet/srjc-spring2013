@@ -309,5 +309,21 @@ $(document).ready(function() {
 				 showLesson(data.lesson_id);
 			});
 		});
-		
+		$("body").swiperight(function() { 
+		 	if (currentLesson < Object.keys(syllabus.lessons).length) {	 
+		     $("table#lesson-list tbody tr").eq(currentLesson).removeClass("info");
+             currentLesson += 1;
+			 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
+			 showLesson($("table#lesson-list tbody tr").eq(currentLesson).attr("data-id"));
+			}
+			   
+         });  
+        $("body").swipeleft(function() {  
+		   if (currentLesson>1) {
+		     $("table#lesson-list tbody tr").eq(currentLesson).removeClass("info");
+             currentLesson -= 1;
+			 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
+			 showLesson($("table#lesson-list tbody tr").eq(currentLesson).attr("data-id"));
+		   }
+        });	
 });
