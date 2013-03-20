@@ -27,6 +27,25 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
   </div>
 </header>
 <div class="container">
+<div id="update-definition" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+    <h3>Update Your Definition</h3>
+     
+  </div>
+  <div class="modal-body"> 
+  
+  <h3 id="change-term" class="span5"></h3>
+   <p class="span5"> Definition </p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="new-definition"></textarea></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+     <a class="btn btn-danger" id="delete-definition">Delete</a>
+    <a class="btn btn-warning" id="change-definition">Update</a>
+  </div>
+</div>
 <div id="write-definition" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -38,7 +57,7 @@ var user = '<?php print $_SESSION['user']['email'] ?>';
   <p class="span5">Web Term </p>
   <p id="enter-term" class="span5" contenteditable=true></p>
    <p class="span5"> Definition </p>
- <p  class="span5"> <textarea columns=600 rows=2 id="enter-definition" name="review-comment"></textarea></p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="enter-definition"></textarea></p>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
