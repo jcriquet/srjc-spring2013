@@ -320,8 +320,8 @@ $(document).ready(function() {
 			});
 		});
 		$("body").swiperight(function() {  
-		     console.log(currentLesson);
-		 	if (currentLesson < Object.keys(syllabus.lessons).length) {	 
+		    if (currentLesson>1) {
+		 	
 		     $("table#lesson-list tbody tr").eq(currentLesson).removeClass("info");
              currentLesson -= 1;
 			 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
@@ -331,8 +331,8 @@ $(document).ready(function() {
 			   
          });  
         $("body").swipeleft(function() {   
-		   console.log(currentLesson);
-		   if (currentLesson>1) {
+		  if (currentLesson < Object.keys(syllabus.lessons).length) {	 
+		  
 		     $("table#lesson-list tbody tr").eq(currentLesson).removeClass("info");
              currentLesson += 1;
 			 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
