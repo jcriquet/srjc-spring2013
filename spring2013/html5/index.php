@@ -25,6 +25,51 @@ var currentLesson = 8;
 <body>
 <header class="jumbotron subhead" id="overview">
   <div class="container">
+  
+   <h2 class="page-header" id="course-info"></h2>
+  </div>
+</header>
+
+ <div class="container">
+ <div id="update-homework" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+    <h3>Update Your Exercise Submission</h3>
+     
+  </div>
+  <div class="modal-body"> 
+  <p class="span5">URL of page </p>
+  <p id="update-hw-link" class="span5" contenteditable=true></p>
+   <p class="span5"> Comment </p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="update-hw-comment"></textarea></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+     <a class="btn btn-danger" id="delete-hw">Delete</a>
+    <a class="btn btn-warning" id="change-hw">Update</a>
+  </div>
+</div>
+
+<div id="update-review" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+    <h3>Update Your Comment</h3>
+     
+  </div>
+  <div class="modal-body"> 
+  
+   <p class="span5"> Comment </p>
+ <p  class="span5"> <textarea columns=600 rows=2 id="update-rev-comment"></textarea></p>
+ </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+     <a class="btn btn-danger" id="delete-rev">Delete</a>
+    <a class="btn btn-warning" id="change-rev">Update</a>
+  </div>
+</div>
+  
   <div id="final-project" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -53,12 +98,6 @@ var currentLesson = 8;
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>
-   <h2 class="page-header" id="course-info"></h2>
-  </div>
-</header>
-
- <div class="container">
- 
  <div id="write-review" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
