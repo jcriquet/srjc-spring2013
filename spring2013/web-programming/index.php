@@ -185,12 +185,6 @@ var currentLesson = 8;
 </div>
 </nav>
   <div class="row">
-    
-     <div class="span8"> 
-      <h1 id="lesson-topic"></h1>
-       <p class="lead" id="lesson-desc"></p>
-   <div id="lesson-info"> </div>
-    </div>
     <div class="span4">  
     <h3>Lessons</h3>
     <table id="lesson-list" class="table table-striped">
@@ -202,6 +196,12 @@ var currentLesson = 8;
      <h3>Participants</h3>
      <div id="student-list"></div>
     </div>
+     <div class="span8"> 
+      <h1 id="lesson-topic"></h1>
+       <p class="lead" id="lesson-desc"></p>
+   <div id="lesson-info"> </div>
+    </div>
+    
     </div>  
   
  <div id="general-info-hdr" class="row jumbotron subhead">
