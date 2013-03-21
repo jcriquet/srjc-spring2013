@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	var syllabus;
-	$("#submit-homework").modal("hide");
-	$("#write-review").modal("hide");
+	$("#submit-homework , #update-homework , #update-review, #write-review").modal("hide");
 	var getProfile = function(user) {
 		$.ajax({
        type: "GET",
@@ -131,7 +130,13 @@ $(document).ready(function() {
 			$("#write-review").modal("show");		   	
 		});	
 		$(".remove-homework").click(function() {
-			var homeworkID = $(this).attr("data-id");
+			$("#delete-hw ").attr("homework-id",$(this).attr("data-id"));
+			$("#update-homework").modal("show");
+		});
+		$("#delete-hw").unbind('click');
+		$("#delete-hw").click(function() {
+			var homeworkID = $(this).attr("homework-id");
+			$("#update-homework").modal("hide");
 			$.ajax({
 					  type: "POST",
 					  url: "../lesson-maker/remove-homework.php", 
@@ -143,6 +148,11 @@ $(document).ready(function() {
 					});
 		});
 		$(".remove-review").click(function() {
+			$("#delete-rev ").attr("data-id",$(this).attr("data-id"));
+			$("#update-review").modal("show");
+		});
+		$("#delete-rev").unbind('click');
+		$("#delete-rev").click(function() {
 			var reviewID = $(this).attr("data-id");
 			$.ajax({
 					  type: "POST",
