@@ -16,14 +16,54 @@ require('../authenticate.php');
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
 var syllabus_id = 1;
-var currentLesson = 7;
+var currentLesson = 8;
 </script>
+<script src="../js/jquery.mobile.custom.min.js"></script>
 <script src="../js/spring2013.js"></script>
 </head>
 
 <body>
 <header class="jumbotron subhead" id="overview">
   <div class="container">
+  
+   <h2 class="page-header" id="course-info"></h2>
+  </div>
+</header>
+
+ <div class="container">
+ <div id="update-homework" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+    <h3>Delete Your Exercise Submission</h3>
+     
+  </div>
+  <div class="modal-body"> 
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+     <a class="btn btn-danger" id="delete-hw">Delete</a>
+  
+  </div>
+</div>
+
+<div id="update-review" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+    <h3>Delete Your Comment</h3>
+     
+  </div>
+  <div class="modal-body"> 
+  
+ </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+     <a class="btn btn-danger" id="delete-rev">Delete</a>
+   
+  </div>
+</div>
+  
   <div id="final-project" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -52,12 +92,6 @@ var currentLesson = 7;
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>
-   <h2 class="page-header" id="course-info"></h2>
-  </div>
-</header>
-
- <div class="container">
- 
  <div id="write-review" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -141,8 +175,8 @@ var currentLesson = 7;
   <li><a href="http://diveintohtml5.info/">Dive into HTML5</a></li>
     <li><a href="../web-programming/">CS 53.11B</a></li>
    <li><a href="http://online.santarosa.edu/gradebook/?5041">Gradebook</a></li>
- <li><a href="https://web-srjc.wikispaces.com/Web+Glossary">Glossary Wiki</a></li>
-   <li><a href="http://web-srjc.wikispaces.com/Web+Development+Links">Links Wiki</a></li>
+ <li><a href="../wiki/">Wiki</a></li>
+   <li><a href="../glossary/">Glossary Essay</a></li>
    <li><a href="#" data-toggle="modal" data-target="#final-project">Final Project</a></li>
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
   <li><a href="#" id="logout">Logout</a></li>
@@ -151,12 +185,6 @@ var currentLesson = 7;
 </nav>
 
   <div class="row">
-    
-     <div class="span8"> 
-      <h1 id="lesson-topic"></h1>
-       <p class="lead" id="lesson-desc"></p>
-   <div id="lesson-info"> </div>
-    </div>
     <div class="span4">  
     <h3>Lessons</h3>
     <table id="lesson-list" class="table table-striped">
@@ -168,6 +196,12 @@ var currentLesson = 7;
      <h3>Participants</h3>
       <div id="student-list"></div>
     </div>
+     <div class="span8"> 
+      <h1 id="lesson-topic"></h1>
+       <p class="lead" id="lesson-desc"></p>
+   <div id="lesson-info"> </div>
+    </div>
+    
     </div>  
   
  <div id="general-info-hdr" class="row jumbotron subhead">
