@@ -86,7 +86,7 @@ a , a:hover  a:active , p.student-listing , #lesson-list td {
 	color:#900 !important;
 }
 
-#lesson-info > p > a.btn {
+#lesson-info p.exercise a.btn {
 	width: 36px;
 	color: #FFF !important;
 }

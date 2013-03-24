@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var getProfile = function(user) {
 		$.ajax({
 			type: "GET",
-			url: "../lesson-maker/get-profile.php",
+			url: "lesson-maker/get-profile.php",
 			data: { email: user, syllabus_id:syllabus_id },
 			datatype: "json"
 		}).done(function( data) {
@@ -54,7 +54,7 @@ $(document).ready(function() {
 	function showLesson(lessonID) {
 		$.ajax({
 			type: "GET",
-			url: "../xanthippe/lesson.php",
+			url: "xanthippe/lesson.php",
 			data: { lesson_id: lessonID },
 			datatype: "json"
 		}).done(function( data) {
@@ -94,7 +94,7 @@ $(document).ready(function() {
 			if (lesson.exercises) {
 				lessoncontent += "<h2>Exercises</h2>";
 				$.each(lesson.exercises, function(index, value) {
-					lessoncontent += '<p><a ';
+					lessoncontent += '<p class="exercise"><a ';
 					if (lesson.exercises[index].type != '') {
 						lessoncontent += 'data-exercise="'+lesson.exercises[index].exercise_id+'" class="btn btn-mini submit-hw ';
 						switch (lesson.exercises[index].type) {
@@ -175,7 +175,7 @@ $(document).ready(function() {
 				$("#update-homework").modal("hide");
 				$.ajax({
 					type: "POST",
-					url: "../lesson-maker/remove-homework.php", 
+					url: "lesson-maker/remove-homework.php", 
 					data: { homework: homeworkID }
 				}).done(function(data) {
 					alert("Your submission was deleted.");
@@ -192,7 +192,7 @@ $(document).ready(function() {
 				var reviewID = $(this).attr("data-id");
 				$.ajax({
 					type: "POST",
-					url: "../lesson-maker/remove-review.php", 
+					url: "lesson-maker/remove-review.php", 
 					data: { review: reviewID }
 				}).done(function(data) {
 					alert("Your review was deleted.");
@@ -204,7 +204,7 @@ $(document).ready(function() {
 	
 	$.ajax({
 		type: "GET",
-		url: "../xanthippe/syllabus.php",
+		url: "xanthippe/syllabus.php",
 		data: { syllabus_id: syllabus_id },
 		datatype: "json"
 	}).done(function( data) {
@@ -286,7 +286,7 @@ $(document).ready(function() {
 		onlogout: function () {
 			$.ajax({
 				type: "GET",
-				url: "../xanthippe/service/auth/index.php"
+				url: "xanthippe/service/auth/index.php"
 			}).done(function( data) {
 				document.location.reload();
 			});
@@ -299,7 +299,7 @@ $(document).ready(function() {
 			var profile = {email:user,syllabus_id:syllabus_id,gallery_URL:$('#galleryurl').text() , github_userid:$('#githubaccount').text() , project_description: $('#myproject').val()}
 			$.ajax({
 				type: "POST",
-				url: "../lesson-maker/put-profile.php",
+				url: "lesson-maker/put-profile.php",
 				data: { profile: profile },
 				datatype: "json"
 			}).done(function( data) {
@@ -318,7 +318,7 @@ $(document).ready(function() {
 		var homework = {student_email:user,exercise_id:$("#submit-exercise").attr("exercise-id"),exerciseLink:$("#exercise-link").text(),exerciseComment:$("#exercise-comment").val()};
 		$.ajax({
 			type:"POST",
-			url:"../lesson-maker/submit-homework.php",
+			url:"lesson-maker/submit-homework.php",
 			data: homework,
 			datatype:"json"
 		}).done(function(data) {
@@ -345,7 +345,7 @@ $(document).ready(function() {
 		var review = {comment:$("#review-comment").val(), student_email: user , homework_id:$("#submit-review").attr("homework-id"), grade:grade};
 		$.ajax({
 			type:"POST",
-			url:"../lesson-maker/put-review.php",
+			url:"lesson-maker/put-review.php",
 			data: review,
 			datatype:"json"
 		}).done(function(data) {
