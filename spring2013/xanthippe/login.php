@@ -2,14 +2,23 @@
 <html lang=en>
 	<head>
 		<meta charset=UTF-8>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Login</title>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<h1>Login</h1>
-		<button id=login><img src="images/plain_sign_in_blue.png"></button>
-		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-		<script src="https://login.persona.org/include.js"></script>
-		<script>
+		<div class="container" style="text-align: center;">
+			<h1>Login</h1>
+			<p>
+				This class website requires you to authenticate with Mozilla Persona.<br />
+				You must login using your e-mail that is on file with the school.<br />
+				This will allow you to view the lessons, submit assignments and participate in the course.
+			</p>
+			<button id=login><img src="images/plain_sign_in_blue.png"></button>
+			<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+			<script src="https://login.persona.org/include.js"></script>
+			<script>
 			// When the login button is clicked, start the login process.
 			var getQueryParameter = function(parameter) {
 	if (window.location.search === '') {
@@ -47,6 +56,7 @@
 				// This won't ever fire in the example.
 				onlogout: function () {}
 			});
-		</script>
+			</script>
+		</div>
 	</body>
 </html>
