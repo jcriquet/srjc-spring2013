@@ -81,11 +81,16 @@ body.mceContentBody {
 }
 #lesson-info p.muted {
 	margin-left:35px;
-	
 }
 a , a:hover  a:active , p.student-listing , #lesson-list td {
 	color:#900 !important;
 }
+
+#lesson-info > p > a.btn {
+	width: 36px;
+	color: #FFF !important;
+}
+
 #lesson-info p.review {
 	margin-left:45px;
 	background:#E0F8FB;
@@ -94,5 +99,4 @@ a , a:hover  a:active , p.student-listing , #lesson-list td {
 	margin-bottom:10px;
 	padding:10px;
 }
-
 

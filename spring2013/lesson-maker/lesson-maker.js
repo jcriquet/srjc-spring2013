@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$("textarea#inputBlog").tinymce({
         // General options
        // mode : "textareas",
-	    script_url : '/~jperetz/spring2013/tinymce/jscripts/tiny_mce/tiny_mce.js',
+	    script_url : '../tinymce/jscripts/tiny_mce/tiny_mce.js',
         theme : "advanced",
         plugins : "autolink,lists,table,emotions,inlinepopups,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
         // Theme options

@@ -6,7 +6,7 @@ require('../authenticate_instructor.php');
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jay Peretz | SRJC Spring 2013 | HTML5 Web Programming</title>
+<title>Scott Rosen | SRJC Spring 2013 | HTML 2</title>
 <link href='http://fonts.googleapis.com/css?family=Lora:400,700,700italic' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@ require('../authenticate_instructor.php');
 <link href="../css/spring2013.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
-var syllabus_id = 1;
+var syllabus_id = 3;
 </script>
 <script src="lesson-maker.js"></script>
 </head>

@@ -6,17 +6,17 @@ require('../authenticate.php');
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jay Peretz | SRJC Spring 2013 | HTML5 Web Programming</title>
+<title>Scott Rosen | SRJC Spring 2013 | HTML 2</title>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-<script src="https://login.persona.org/include.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="https://login.persona.org/include.js"></script>
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="../css/spring2013.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 var user = '<?php print $_SESSION['user']['email'] ?>';
-var syllabus_id = 2;
-var currentLesson = 8;
+var syllabus_id = 3;
+var currentLesson = 1;
 </script>
 <script src="../js/jquery.mobile.custom.min.js"></script>
 <script src="../js/spring2013.js"></script>
@@ -29,8 +29,8 @@ var currentLesson = 8;
   </div>
 </header>
 
- <div class="container">
-<div id="update-homework" class="modal hide fade">
+<div class="container">
+ <div id="update-homework" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
@@ -62,7 +62,36 @@ var currentLesson = 8;
    
   </div>
 </div>
- <div id="final-project" class="modal hide fade">
+  
+  <div id="gradebook" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  
+      <h3>Gradebook</h3>
+     
+  </div>
+  <div class="modal-body">
+  <div class="row-fluid">
+  <dl class="dl-horizontal span6">
+  <dt>Current Grade</dt>
+  <dd>97.1%</dd>
+  <dt>Course Completion</dt>
+  <dd>30.0%</dd>
+  </dl>
+  <dl class="dl-horizontal span6">
+  <dt>Minimum Grade</dt>
+  <dd>25.6%</dd>
+  <dt>Maximum Grade</dt>
+  <dd>99.2%</dd>
+  </dl>
+  </div>
+  <div id="grade-list"></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+<div id="final-project" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
@@ -76,10 +105,10 @@ var currentLesson = 8;
   <dt>Project Due Date</dt>
   <dd>5/12/2013</dd>
   <dt>Project Scope</dt>
-  <dd>Create a Database-Driven Website using PHP & MySQL, with an application of your choice.    There are SO many applications you can choose, for example: a TO-DO list, a recipe book, a catalog of your music, a contact list of your friends that automatically sends e-birthday & e-holiday cards, a specialized blog or content management system (such as this class webpage)...</dd> 
-  <dt>Database Interaction<br>
-30 points</dt><dd> The website needs to demonstrate the ability to interact with data in a database using the PHP - AJAX - Javascript techniques demonstrated in the class tutorials.</dd> <dt>Database Design<br>
-25 points</dt> <dd> The database needs to be designed using the entity-relationship constraints we explored in the SQL tutorials (ie not in one table). </dd> <dt>Responsive Layout<br>
+  <dd>Create a website or web application that demonstrates your ability to implement at least six of the lessons presented in this class, in an integrated and logical way. </dd>
+  <dt>HTML5 Page Structure<br>
+10 points</dt><dd> The website needs to be structured semantically, using current document and metadata markup.</dd> <dt>Interactivity<br>
+45 points</dt> <dd> The website needs to provide some way of interacting with the user - either through form elements, services such as  geolocation or data apis, or visual interactions using media or vector elements. </dd> <dt>Responsive Layout<br>
 25 points</dt>  <dd>  The website page layouts must be designed for at least 2 screen-widths  using basic HTML5 viewport and media query capabilities.  </dd>
 <dt>Overall Concept & Execution<br>
 20 points</dt>  <dd>How innovative is your website concept and how fully realized is it the project. </dd>
@@ -90,13 +119,11 @@ var currentLesson = 8;
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>
- 
- 
  <div id="write-review" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   
-      <h3><i id="review-grade"></i> for <span id="review-subject"></span> </h3>
+    <h3><i id="review-grade"></i> for <span id="review-subject"></span> </h3>
      
   </div>
   <div class="modal-body"> 
@@ -118,10 +145,10 @@ var currentLesson = 8;
   <div class="modal-body"> 
   <p class="span5">Your github.com userid </p>
   <p id="githubaccount" class="span5" contenteditable=true></p>
-   <p class="span5"> Your student gallery URL </p>
+   <p class="span5">Your student gallery URL</p>
   <p id="galleryurl" class="span5" contenteditable=true></p>
-     <p class="span5"> Your final project proposal </p>
- <p  class="span5"> <textarea columns=600 rows=2 id="myproject" name="myproject"></textarea></p>
+     <p class="span5">Your final project proposal</p>
+ <p class="span5"> <textarea columns=600 rows=2 id="myproject" name="myproject" ></textarea></p>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
@@ -153,16 +180,9 @@ var currentLesson = 8;
 <div id="submit-homework" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  
     <h3>Submit your exercise information</h3>
-  
   </div>
-  <div class="modal-body"> 
-  <p class="span5">URL of page </p>
-  <p id="exercise-link" class="span5" contenteditable=true></p>
-   <p class="span5"> Comment </p>
- <p  class="span5"> <textarea columns=600 rows=2 id="exercise-comment" name="exercise-comment"></textarea></p>
-  </div>
+  <div class="modal-body" id="exercise-content"></div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
     <a class="btn btn-warning" id="submit-exercise">Submit</a>
@@ -172,18 +192,18 @@ var currentLesson = 8;
 <nav class="row">
 <div class="span12">
 <ul class="nav nav-pills">
-  <li><a href="http://www.w3schools.com/php/default.asp">PHP/MySQL/AJAX Tutorial</a></li>
-  <li><a href="https://sas.elluminate.com/site/external/recording/playback/link/table/meeting?suid=M.DE63425940BCC831A6EEBAF99817AC">Elluminate Archive</a></li>
-    <li><a href="../html5/">CS 52.10</a></li>
-   <li><a href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a></li>
-   <li><a href="../wiki/">Wiki</a></li>
-     <li><a href="../glossary/">Glossary Essay</a></li>
-    <li><a href="#" data-toggle="modal" data-target="#final-project">Final Project</a></li>
+  <li><a href="http://diveintohtml5.info/">Dive into HTML5</a></li>
+   <!--<li><a href="../web-programming/">CS 53.11B</a></li>-->
+  <li><a href="#" data-toggle="modal" data-target="#gradebook">Gradebook</a></li>
+  <li><a href="../wiki/">Wiki</a></li>
+  <li><a href="../glossary/">Glossary Essay</a></li>
+  <li><a href="#" data-toggle="modal" data-target="#final-project">Final Project</a></li>
   <li><a href="#" id="profile" data-toggle="modal" data-target="#myprofile">Profile</a></li>
   <li><a href="#" id="logout">Logout</a></li>
 </ul>
 </div>
 </nav>
+
   <div class="row">
     <div class="span4">  
     <h3>Lessons</h3>
@@ -194,7 +214,7 @@ var currentLesson = 8;
   </tr>
     </table>   
      <h3>Participants</h3>
-     <div id="student-list"></div>
+      <div id="student-list"></div>
     </div>
      <div class="span8"> 
       <h1 id="lesson-topic"></h1>
@@ -214,7 +234,9 @@ var currentLesson = 8;
           <h3>Lecture/Labs</h3>
           
           
-        <p>Wednesdays 7:00PM-10:00PM<br>
+          <p>This is an online class and there is no regularly scheduled lecture or lab associated with this class.   The weekly lessons will consist of some reading materials, supplemental resources such as tutorials or documentation, and coding exercises. Instructor-led video or documented tutorials may be included in weekly lessons as well. </p>
+          
+<!--<p>Wednesdays 7:00PM-10:00PM<br>
    Petaluma Campus Call Building Room PC643
 </p><p>Class attendance is strongly encouraged but not required, all lectures will be broadcast and recorded.</p>
 <h3>Live Broadcast</h3>
@@ -222,11 +244,11 @@ var currentLesson = 8;
   Click the Student Log-In button under the <strong>Teach & Confer logo</strong><br>
   Locate your meeting and click Go
   Fill out the form and enter the passcode: 882585</p>
-  <p>Watch the <a  href="https://sas.elluminate.com/site/external/recording/playback/link/table/meeting?suid=M.DE63425940BCC831A6EEBAF99817AC">Class Lecture Archives</a> on Elluminate Blackboard</p>
-  
+  <p>Watch the <a  href="https://sas.elluminate.com/site/external/recording/playback/link/table/meeting?suid=M.4499381339B7E207E8E6778F438C63">Class Archives</a></p>
+   -->
 <h3>Office Hours</h3>
 <p>Wednesdays 6:00PM-7:00PM<br>
-  Petaluma Campus Call Building   Computer Lab<br>
+  Petaluma Campus Call Building Room Computer Lab<br>
   By Appointment Only
   <br>
 </p>
@@ -236,21 +258,25 @@ var currentLesson = 8;
 <h3>Gradebook</h3>
 <p>Check your grades for exams and projects:</p> 
 <p>  
-<a  href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a> for  section 5250</a>  
+<a  href="http://online.santarosa.edu/gradebook/?5041">Gradebook</a> for  section 5371</a>  
 </p>
+<!--<p>  
+<a  href="http://online.santarosa.edu/gradebook/?5042">Gradebook</a> for  section 5250</a>  
+</p>-->
 
           
             <h4>Official Course Catalog Description</h4>
-          <p>An exploration of advanced topics in Dreamweaver with an emphasis on building dynamic web pages using Cascading Style Sheets (CSS), Spry (the Adobe implementation of Ajax) and other JavaScript frameworks, and the open source server-side technology PHP and MySQL databases.</p>
+          <p>The course covers using HTML (HyperText Markup Language), CSS (Cascading Style Sheets), and Javascript to produce powerful interactive Web content. Topics include the HTML5 structural, semantic and form tags, how to use Canvas to create drawings natively in the browser, how to work with HTML5 audio and video, and how to build web pages that work with mobile devices. Also includes the current state of browser support for HTML5 and the theory behind all the changes that have been made.</p>
           <h4>Student Learning Outcomes</h4>
         
-<p>Students will be able to:<br>
-1.  Demonstrate the efficient use of Dreamweaver tools to create a web pages that adhere to current HTML  (hypertext markup language) and CSS (Cascading Style Sheets) standards.<br>
-2.  Incorporate a variety of dynamic client and server-sided technologies including the use of Asynchronous JavaScript and XML (AJAX), the creation of sever-validated forms, the implementation of templates, and the use of PHP [Hypertext Preprocessor] and MySQL [Simple Query Language]  to construct database-driven web sites.</p>
+<p>
+Students will be able to:<br>
+1.  Use HTML5 Markup to create interactive web content.<br>
+2.  Evaluate current browser support for the various HTML5 features.<br>
+3.  Decide when and why to use HTML5 features and the implications on the architecture.</p>
 
 <h4>Required Materials</h4>
-<p>Adobe Dreamweaver CS5 or higher</p>
-           <!--<p>There is NO REQUIRED SOFTWARE, although you will need a good code editor and a webserver account (an SRJC student account is fine, but you may also use your own domain or another host.) You will also need to use a current version of an HTML5 browser with a great element inspector (Chrome, FireFox, Opera or Internet Explorer 9+ will work.)</p>-->
+<p>There is NO REQUIRED SOFTWARE, although you will need a good code editor and a webserver account (an SRJC student account is fine, but you may also use your own domain or another host.) You will also need to use a current version of an HTML5 browser with a great element inspector (Chrome, FireFox, Opera or Internet Explorer 9+ will work.)</p>
 <p>A webserver account, either on your own domain or <a  href="https://student.santarosa.edu:85/apply/linux-account.php">free Linux webserver accounts</a> are available through the Santa Rosa Junior College IT services. </p>
 <p>You may use the Computer Studies labs in Santa Rosa and Petaluma during regularly scheduled lab hours, or you may also work at your own computer. You MUST be self-sufficient with basic webserver fundamentals and be able to use FTP to deploy a website.</p>
 <p>An account on <a  href="http://www.github.com/">github.com</a> for your project and exercise code repositories.   This will be discussed in class.</p>
@@ -258,7 +284,8 @@ var currentLesson = 8;
     <div class="span4"> 
         <h4>Textbook</h4> 
         
-           <p>This class has no REQUIRED textbook.   The material will be covered completely in the lectures (live and recorded), exercises supplemental resources that will presented as part of each weekly lecture.    </p>
+          <p>This class is based on <a  href="http://diveintohtml5.info/">Dive Into HTML5</a> by Mark Pilgrim, which is available online for free. The book is also available as a paperback  published by O'Reilly (ISBN 978-0596806026) under the title of <a  href="http://www.amazon.com/HTML5-Up-Running-Mark-Pilgrim/dp/0596806027/ref=sr_1_10?ie=UTF8&qid=1357772086&sr=8-10&keywords=html5"> HTML5: Up and Running </a>.</p>
+       <!-- <p>This class has no REQUIRED textbooks.   , but  the curriculum is loosely based on these two books . There are many fantastic Javascript books, I highly recomment that you  have at least one or two available as you take this class.</p>-->
        
 
    
@@ -266,9 +293,8 @@ var currentLesson = 8;
     <ul>
      
      
-      <li><a href="http://www.amazon.com/Learning-MySQL-JavaScript-Step--ebook/dp/B008XCFLTM/ref=sr_1_1?s=digital-text&ie=UTF8&qid=1357777372&sr=1-1&keywords=php+mysql">Learning PHP, MySQL, JavaScript, and CSS: A Step-by-Step Guide to Creating Dynamic Websites by Robin Nixon</a></li>
-       <li><a href="http://www.amazon.com/MySQL-Dynamic-Fourth-Edition-ebook/dp/B005GXM63U/ref=sr_1_3?s=digital-text&ie=UTF8&qid=1357777372&sr=1-3&keywords=php+mysql">PHP and MySQL for Dynamic Web Sites, Fourth Edition: Visual QuickPro Guide by Larry Ullman</a></li>
-       <li><a href="http://www.lynda.com/Dreamweaver-CS5-tutorials/php-and-mysql/68620-2.html?srchtrk=index%3a4%0alinktypeid%3a2%0aq%3amysql+php%0apage%3a1%0as%3arelevance%0asa%3atrue%0aproducttypeid%3a2">lynda.com: Dreamweaver with PHP and MySQL with David Gassner</a></li>
+      <li><a href="http://www.amazon.com/The-Definitive-Guide-HTML5-ebook/dp/B006LPJZFE/ref=pd_sim_kstore_8">The Definitive Guide to HTML5 by Adam Freeman</a></li>
+       <li><a href="http://www.amazon.com/HTML5-Missing-Manual-Manuals-ebook/dp/B005KOJ3MC/ref=pd_sim_kstore_24">HTML5: The Missing Manual by Matthew MacDonald</a></li>
     </ul>
   
   
@@ -335,7 +361,56 @@ var currentLesson = 8;
     </div>
     <div class="span4">
     <h4>Semester Schedule</h4>
- 	 <table  class="table table-striped" >
+ 	<table class="table table-striped">
+                            <tbody><tr>
+                                <td align="right" valign="top" class="NormalBold">Day Class Begins:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateBegin" class="Normal">Monday, January 14, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Day Class Ends:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateEnd" class="Normal">Friday, May 17, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Day/Time of Final Exam:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblFinalExam" class="Normal">To be Arranged</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Last Day to Add<br>
+                                    without instructor's approval:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateLastAdd" class="Normal">Sunday, January 20, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Last Day to Add<br>
+                                    with instructor's approval:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateLastAddWithApproval" class="Normal">Sunday, February 03, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Last Day to Drop<br>
+                                    and be eligible for enrollment/course fee refund:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateLastRefund" class="Normal">Sunday, January 27, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Last Day to Drop<br>
+                                    without a 'W' symbol:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateLastDropWithoutW" class="Normal">Sunday, February 10, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Last Day to Drop<br>
+                                    with a 'W' symbol:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateLastDropWithW" class="Normal">Sunday, April 28, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">Last Day to Opt<br>
+                                    for Pass/No Pass:</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateLastOptCRNC" class="Normal">Sunday, February 24, 2013</span></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top" class="NormalBold">First Census Date</td>
+                                <td align="left" valign="top" style="white-space: nowrap"><span id="lblDateFirstCensus" class="Normal">Monday, February 04, 2013</span></td>
+                            </tr>
+                        </tbody></table>	 	
+ 	
+ 		<!-- <table  class="table table-striped" >
 		<tbody><tr>
 			<td>Date Class Begins: </td><td>1/16/2013</td><td>Date Class Ends: </td><td>5/15/2013</td>
 		</tr><tr>
@@ -347,7 +422,7 @@ var currentLesson = 8;
 		</tr><tr>
 			<td class="NormalBold">FIRST CENSUS DATE: </td><td>2/4/2013</td><td>Date Final Exam: </td><td>5/22/2013</td>
 		</tr>
-	</tbody></table>	
+	</tbody></table>	-->
 	
 	 	
 	
@@ -411,7 +486,7 @@ possible to better ensure such accommodations are implemented in a timely fashio
         
         </div>
         </div>
-        <footer class="row well well-large">
+         <footer class="row well well-large">
         <h4>This page requires Javascript and is best viewed in the  <a href="https://www.google.com/intl/en/chrome/browser/">latest version of Google Chrome
        <img src="../images/chrome.png" alt="Download Google Chrome" height="100" width="100" /></a></h4>
         </footer>
