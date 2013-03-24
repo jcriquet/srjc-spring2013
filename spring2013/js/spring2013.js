@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	var syllabus;
-	$("#submit-homework").modal("hide");
-	$("#write-review").modal("hide");
+	$("#submit-homework , #update-homework , #update-review, #write-review").modal("hide");
 	var getProfile = function(user) {
 		$.ajax({
        type: "GET",
@@ -54,8 +53,9 @@ $(document).ready(function() {
 		if (lesson.blogpost) {
 		    lessoncontent += "<div class=blog>"+lesson.blogpost+"</div>";
 		};
-		lessoncontent += "<h2>Reading</h2>";
+		// display any reading assignments for this lesson
 		if (lesson.reads) {
+		lessoncontent += "<h2>Reading</h2>";
 		$.each(lesson.reads, function(index, value) {
 			if (lesson.reads[index].title && lesson.reads[index].reading_url) {
 			 lessoncontent += '<p><a href="'+lesson.reads[index].reading_url+'">'+lesson.reads[index].title+'&nbsp;'+lesson.reads[index].description+'</a></p>';
@@ -68,37 +68,42 @@ $(document).ready(function() {
 			}
 	      });
 		}
+		// display any explore links for this lesson
+		if (lesson.explores) {
 		lessoncontent += "<h2>Explore </h2>";
 		lessoncontent += "<h4>Non-manditory readings and exercises.  Choose the ones that you find interesting.</h4>"; 
-		if (lesson.explores) {
 		$.each(lesson.explores, function(index, value) {
 			 lessoncontent += '<p><a href="'+lesson.explores[index].url+'">'+lesson.explores[index].description+'</a></p>';
 	      });
 		}
-		lessoncontent += "<h2>Exercises</h2>";
+		// display any exercises for this lesson
 		if (lesson.exercises) {
+		lessoncontent += "<h2>Exercises</h2>";
 		$.each(lesson.exercises, function(index, value) {
 			if (lesson.exercises[index].url) {
 			   lessoncontent += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+lesson.exercises[index].exercise_id+'">Submit</a>&nbsp;<a href="'+lesson.exercises[index].url+'">'+lesson.exercises[index].description+'</a></p>';
 			} else {
 				lessoncontent += '<p> <a class="btn btn-warning submit-hw" data-exercise="'+lesson.exercises[index].exercise_id+'">Submit</a>&nbsp;'+lesson.exercises[index].description+'</p>';
 			}
+			//display any homework submissions for this exercise
 	      if (lesson.exercises[index].homeworks) {
 			  $.each(lesson.exercises[index].homeworks,function(index2,value2) {
-				  if (lesson.exercises[index].homeworks[index2].URL) {
-			   lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>&mdash; '+lesson.exercises[index].homeworks[index2].comment+'</p>';
-			} else {
-				lessoncontent += '<p class="muted"><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'" class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].first_name+'&mdash;'+lesson.exercises[index].homeworks[index2].comment+'</p>';
-			}	
-						  
-			
+				  lessoncontent += '<p class="muted"><a data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+' data-homeworkid="'+ index2+'" class="btn thumbs thumbsup" href="#write-review"><i class="icon-thumbs-up"></i></a><a  data-reviewee='+ lesson.exercises[index].homeworks[index2].first_name+'  data-homeworkid="'+ index2 +'"  class="btn thumbs thumbsdown" href="#write-review"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;';
+				  //does the submission have a url link
+				  lessoncontent += (lesson.exercises[index].homeworks[index2].URL) ? '<a href="'+lesson.exercises[index].homeworks[index2].URL+'">'+lesson.exercises[index].homeworks[index2].first_name+'</a>' : '+lesson.exercises[index].homeworks[index2].first_name+' ;
+				  lessoncontent += '&mdash; '+lesson.exercises[index].homeworks[index2].comment+'&nbsp;';
+				  // is this submission by the current logged in user
+				  lessoncontent += (value2.student_email === user) ? '<a class="btn btn-mini remove-homework" data-id="'+ index2 +'"><i class="icon-remove"></i></a></p>' : '</p>';				
+		// display any reviews of a homework submission		
 			  if (lesson.exercises[index].homeworks[index2].reviews) {
 				    $.each(lesson.exercises[index].homeworks[index2].reviews,function(index3, value3) {
-						if (lesson.exercises[index].homeworks[index2].reviews[index3].grade == 1) {
-						lessoncontent += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-up"></i>'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
-					    }  else {
-						lessoncontent += '<p class="muted review">&nbsp;&nbsp;<i class="icon-thumbs-down"></i>'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'</p>';
-						}
+						lessoncontent += '<p class="muted review">&nbsp;&nbsp;';
+						//thumbs up or thumbs dowm
+						lessoncontent += (lesson.exercises[index].homeworks[index2].reviews[index3].grade == 1) ?'<i class="icon-thumbs-up"></i>' : '<i class="icon-thumbs-down"></i>';
+						lessoncontent += '&nbsp;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].comment+'&nbsp;&mdash;&nbsp;'+lesson.exercises[index].homeworks[index2].reviews[index3].first_name+'';
+						 // is this review by the current logged in user
+						lessoncontent += (value3.student_email === user) ? '&nbsp;<a class="btn btn-mini remove-review" data-id="'+ index3 +'"><i class="icon-remove"></i></a></p>' : '</p>';
+						
 						
 				     });   
 			   } 
@@ -107,10 +112,12 @@ $(document).ready(function() {
 		  });
 		}		
 		$("#lesson-info").html(lessoncontent);	
+		// set event to submit homework
 		$(".submit-hw").click(function() {
 			$("#submit-homework").modal("show");
 			$("#submit-exercise").attr("exercise-id",$(this).attr("data-exercise"));			
 		});	
+		// set event to enter a review of a homework submission
 		$(".thumbs").click(function() {
 			$("#review-grade").removeClass("icon-thumbs-up").removeClass("icon-thumbs-down");
 			if ($(this).hasClass("thumbsup")) {
@@ -122,6 +129,40 @@ $(document).ready(function() {
 			$("#submit-review").attr("homework-id",$(this).attr("data-homeworkid"));		
 			$("#write-review").modal("show");		   	
 		});	
+		$(".remove-homework").click(function() {
+			$("#delete-hw ").attr("homework-id",$(this).attr("data-id"));
+			$("#update-homework").modal("show");
+		});
+		$("#delete-hw").unbind('click');
+		$("#delete-hw").click(function() {
+			var homeworkID = $(this).attr("homework-id");
+			$("#update-homework").modal("hide");
+			$.ajax({
+					  type: "POST",
+					  url: "../lesson-maker/remove-homework.php", 
+					  data: { homework: homeworkID }
+					}).done(function(data) {
+						alert("Your submission was deleted.");
+						showLesson(lessonID);
+						syllabus.students[user].homeworks[homeworkID] = {};
+					});
+		});
+		$(".remove-review").click(function() {
+			$("#delete-rev ").attr("data-id",$(this).attr("data-id"));
+			$("#update-review").modal("show");
+		});
+		$("#delete-rev").unbind('click');
+		$("#delete-rev").click(function() {
+			var reviewID = $(this).attr("data-id");
+			$.ajax({
+					  type: "POST",
+					  url: "../lesson-maker/remove-review.php", 
+					  data: { review: reviewID }
+					}).done(function(data) {
+						alert("Your review was deleted.");
+						showLesson(lessonID);
+					});
+		});
 	  }); //close ajax done
     }
 	
@@ -179,8 +220,9 @@ $(document).ready(function() {
 			  if (syllabus.students[$(this).attr("data-id")].homeworks) {
 				 
 				  $.each(syllabus.students[$(this).attr("data-id")].homeworks, function(index, value) {
+					  if (value.topics) {
 				    $("#homeworks").append('<p><a href="'+value.url+'">'+value.topics+'</a>&mdash;'+value.comment+'</p>');
-					 
+					  }
 				  });
 			  }
 			  
@@ -248,6 +290,10 @@ $(document).ready(function() {
                var data = $.parseJSON(data);
 		//	   syllabus.lessons[data.lesson_id].exercises[data.exercise_exercise_id].homeworks[data.homework_id] = data;
 			   var newsubmission = {comment:data.comment, first_name:data.first_name, homework_id:data.homework_id, student_email:data.student_email, topics: syllabus.lessons[data.lesson_id].topics, url:data.URL};
+			    if (!syllabus.students[data.student_email].homeworks) {
+					syllabus.students[data.student_email].homeworks = {};
+				}
+				// update the student record with the new submission
 			   syllabus.students[data.student_email].homeworks[data.homework_id] = newsubmission;
 			   showLesson(data.lesson_id);
 		    });
@@ -273,5 +319,25 @@ $(document).ready(function() {
 				 showLesson(data.lesson_id);
 			});
 		});
-		
+		$("body").swiperight(function() {  
+		    if (currentLesson>1) {
+		 	
+		     $("table#lesson-list tbody tr").eq(currentLesson).removeClass("info");
+             currentLesson -= 1;
+			 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
+			
+			 showLesson($("table#lesson-list tbody tr").eq(currentLesson).attr("data-id"));
+			}
+			   
+         });  
+        $("body").swipeleft(function() {   
+		  if (currentLesson < Object.keys(syllabus.lessons).length) {	 
+		  
+		     $("table#lesson-list tbody tr").eq(currentLesson).removeClass("info");
+             currentLesson += 1;
+			 $("table#lesson-list tbody tr").eq(currentLesson).addClass("info");
+			
+			 showLesson($("table#lesson-list tbody tr").eq(currentLesson).attr("data-id"));
+		   }
+        });	
 });
